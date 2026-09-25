@@ -1,0 +1,46 @@
+tools: dataset_initial_context, dataset_groq_query, dataset_schema_explorer, dataset_array_field_reader, kb_initial_context, kb_knowledge_base_read
+> dataset_initial_context {}
+> kb_initial_context {}
+> dataset_groq_query {"query":"{\n  \"bodies\": *[_type == \"body\" && (name match text::query(\"T5i 700D\") || aliases[] match text::query(\"T5i 700D\"))][0...10]{_id,name,aliases,maker,viewfinderAf,liveViewAf,liveViewAf
+> dataset_groq_query {"query":"{\n  \"compat\": *[_type == \"compatibilityRecord\" && references(\"body-canon-t5i\") || (_type == \"compatibilityRecord\" && references(\"lens-canon-efs-18-55-is-stm\"))][0...20]{_id,scope,
+> kb_knowledge_base_read {"knowledgeBase":"kb4LQhif6kkH","paths":["live_view_autofocus","viewfinder_autofocus/af_operation_and_point_selection","lens_autofocus","camera_body/specifications"]}
+
+**Verdict:** Your T5i + EF-S 18-55mm IS STM is manufacturer-covered for **continuous AF in video**, but focus hunting is still expected in difficult AF conditions—especially **Live View/movie-style AF**, low light/low contrast, repetitive patterns, moving subjects, or when the camera is auto-choosing the wrong AF point.
+
+## Viewfinder photos
+
+**Why it misses or seems to hunt:**  
+- In Basic Zone/auto modes, the camera may choose the nearest thing, not your intended subject: “In Basic Zone modes, the camera will normally focus the closest subject automatically. Therefore, it may not always focus your target subject.” — Canon, p.100  
+- With difficult subjects, viewfinder AF may fail rather than lock: “Autofocus can fail to achieve focus (viewfinder’s focus confirmation light <o> blinks) with certain subjects such as the following:” — Canon, p.103  
+
+The knowledge-base summary in `viewfinder_autofocus/af_operation_and_point_selection` says those difficult subjects include very low contrast, very low light, strong backlight/reflections, near/far subjects under the same AF point, and repetitive patterns.
+
+**What to do:** Use P/Tv/Av/M, manually select a single AF point—often the center point—put it on real contrast, half-press to lock in One-Shot, then recompose. If it still blinks/fails, focus on something at the same distance or switch the lens to MF.
+
+## Live View photos
+
+**Why it hunts:**  
+The dataset has a T5i Live View caveat for hunting when conditions are hard: low contrast, low light, repetitive patterns, or moving subjects. Canon’s cited heading is: “Shooting conditions that make focusing difficult” — Canon, p.165  
+
+The knowledge-base summary in `live_view_autofocus` explains that T5i Live View uses contrast-detect/hybrid AF methods for Face+Tracking, FlexiZone-Multi, and FlexiZone-Single, which can be slower than viewfinder phase-detect AF and can hunt when the image does not give the camera a clear contrast peak.
+
+**What to do:** Use FlexiZone-Single and place the point on a high-contrast edge; add light; avoid blank walls, sky, shiny surfaces, fences, and repetitive patterns. For stills, try **Quick mode**, which uses the viewfinder AF sensor, though it interrupts the Live View image. Canon’s remedy in the dataset is: switch the lens to MF and focus manually if focus is not achieved.
+
+## Video / Movie Servo AF
+
+**Compatibility:** Continuous AF is supported for this exact lens/body record. Canon’s lens manual compatibility note says: “Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)” — Canon, p.2  
+
+Single-shot AF for video is **not stated** in that compatibility record.
+
+**Why it still hunts:**  
+Movie Servo AF is continuous, so if the subject lacks contrast, moves toward/away quickly, is close to the camera, or the AF area contains both near and far objects, the camera may keep seeking. The knowledge-base summary in `live_view_autofocus` also notes that Quick mode is not available for movies, so video is stuck with the Live View/movie AF methods.
+
+**What to do:** For video, use FlexiZone-Single when possible, keep the AF point on the subject, avoid busy backgrounds, and consider disabling or pausing Movie Servo AF once focus is acquired. For critical shots, pre-focus or use manual focus.
+
+## Lens-specific note: STM sleep/power behavior
+
+If the lens seems unresponsive rather than merely hunting, the STM focus system needs camera power. Canon says: “Manual focus adjustments are not possible.” — Canon, p.5  
+
+Dataset remedy: press the shutter button halfway to wake the lens. The knowledge-base summary in `lens_autofocus` adds that this STM lens is electronically focused, so camera-off or sleep states can affect manual focus behavior.
+
+steps: 5, tokens: 47842

@@ -1,0 +1,72 @@
+tools: initial_context, knowledge_base_read
+> initial_context {}
+> knowledge_base_read {"knowledgeBase":"kb4LQhif6kkH","paths":["live_view_autofocus","viewfinder_autofocus/af_operation_and_point_selection","lens_autofocus"]}
+
+**Verdict:** Your Canon EOS Rebel T5i/700D + EF-S 18-55mm f/3.5-5.6 IS STM should autofocus, but it can “hunt” in Live View/video because the camera is continuously/contrast-focusing, and in any mode Canon says certain subjects/conditions are difficult for AF.
+
+## By shooting mode
+
+### Viewfinder photos
+**Likely reasons for hunting/missed focus:**
+- The T5i uses phase-detect AF through the viewfinder, but Canon lists subjects that may fail AF: low contrast, low light, strong backlight/reflections, near+far subjects under one AF point, and repetitive patterns.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “AF may fail (**◉** blinks) with: Very low-contrast subjects (blue sky, solid-color walls), Very low light, Extremely backlit or highly reflective subjects (e.g. car body), AF point covering both a near and a far subject (e.g. animal in a cage), Repetitive patterns (skyscraper windows, keyboard).”
+- If you are using automatic AF point selection, the camera may choose the wrong subject.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Automatic selection (Basic Zone modes default): all 9 AF points light up; the camera focuses the closest subject automatically.”
+
+**What to do:**
+- For still subjects, use **One-Shot AF** and manually select one AF point—often the center point—then focus and recompose.
+- Aim the AF point at a high-contrast edge at the same distance.
+- If AF still fails, Canon’s remedy is to focus on something at the same distance and recompose, or switch to MF.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “With One-Shot AF: focus on an object at the same distance as the subject, lock focus, then recompose.”  
+  Quote: “Set the lens focus mode switch to **MF** and turn the focusing ring until the subject is sharp in the viewfinder.”
+
+---
+
+### Live View photos
+**Likely reasons for hunting:**
+- Live View AF on the T5i is slower than viewfinder AF, and it may refocus even after focus was already achieved.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Live View contrast-detect AF (u+Tracking, FlexiZone-Multi, FlexiZone-Single) is slower than viewfinder phase-detect AF; pressing the shutter button halfway focuses again even if focus was already achieved.”
+- Continuous AF in Live View is enabled by default, so the lens may keep moving/fine-tuning, which can look like hunting.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Default setting: **Enable**. Keeps focus near the subject continuously so pressing the shutter button results in faster final AF. Trade-off: the lens operates frequently, consuming more battery and reducing shot count.”
+- Live View AF is difficult with low contrast, low light, fine/repetitive patterns, reflections, small subjects, edge subjects, mixed near/far subjects, motion, or subjects far out of focus.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Low-contrast subjects (blue sky, solid-color surfaces, blown highlights/shadows), low light, horizontal-only contrast patterns, repetitive patterns, fine lines, changing light sources, night scenes, very small subjects, edge-of-frame subjects, strongly reflective subjects, mixed near/far subjects in one AF point, moving subjects, subject far out of focus initially, soft-focus or special-effect lenses, and image noise.”
+
+**What to do:**
+- For still photos in Live View, try **Quick mode** if you want faster focus; Canon says it uses the dedicated AF sensor, but the Live View image will interrupt briefly.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Quick mode — uses the dedicated AF sensor (phase-detect) via One-Shot AF, identical to viewfinder AF behavior. Fastest focus acquisition, but the Live View image is interrupted momentarily while the mirror flips down for AF.”
+- If the lens is constantly twitching before the shot, disable **Continuous AF**.
+- Use **FlexiZone-Single** and place the AF point on a clear, contrasty detail.
+
+---
+
+### Video / Movie Servo AF
+**Likely reasons for hunting:**
+- Your STM lens is specifically meant to work well with the T5i’s Movie Servo AF, but Movie Servo AF still continuously adjusts focus and can struggle with movement or close subjects.  
+  **Source:** Canon, EF-S 18-55 IS STM instructions / T5i manual summary, page not stated. Quote: “Movie Servo AF is compatible only with specific bodies. As of June 2013: EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, and EOS M (with Mount Adapter EF-EOS M).”
+- Canon notes that the EF-S 18-55mm IS STM minimizes focusing noise in movie AF, but that does not mean focus will never hunt.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “The EF-S18-55mm f/3.5-5.6 IS STM and EF-S18-135mm f/3.5-5.6 IS STM lenses minimize focusing noise in the recording.”
+- Movie Servo AF can have problems with fast approaching/receding subjects or close subjects.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Fast-moving subjects approaching or receding, or subjects at close distance in front of the camera, are difficult to focus.”
+- Zooming can interrupt Movie Servo AF.  
+  **Source:** Canon, EOS Rebel T5i/700D instruction manual, page not stated. Quote: “Movie Servo AF stops momentarily during zoom or image magnification.”
+
+**What to do:**
+- If the focus pulsing ruins a shot, pause Movie Servo AF or disable it and focus manually.
+- Avoid zooming during a take if focus hunting is visible.
+- Put the AF area on a clear subject, not a blank wall, reflective object, or background with repeated patterns.
+- For critical video, pre-focus and use MF.
+
+---
+
+### Lens-specific STM behavior
+The EF-S 18-55 IS STM is focus-by-wire, so focus behavior can be affected by sleep/wake states.
+
+**Possible cause after turning on/waking the camera:**
+- The lens may briefly reset focus when the camera powers on or wakes.  
+  **Source:** Canon, EF-S 18-55 IS STM instructions, page not stated. Quote: “Initial reset: when the camera powers on (or wakes from auto power off), the lens performs an initial focus reset — the viewfinder image goes out of focus briefly. Wait approximately 1 second after reset completes before shooting.”
+
+**What to do:**
+- After waking the camera, wait about a second before shooting.
+- Half-press the shutter to wake the lens before trying to manually focus.
+
+steps: 3, tokens: 10861

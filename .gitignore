@@ -1,0 +1,7 @@
+.env*
+node_modules/
+# manufacturer documents: fetched by scripts/fetch_sources.py, not redistributed
+data/kb-files/
+data/kb-text/
+data/old-ids.txt
+__pycache__/
