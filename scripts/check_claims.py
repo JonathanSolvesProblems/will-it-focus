@@ -64,8 +64,17 @@ if manual.exists():
     pages = len(re.findall(r"=== page \d+ ===", manual.read_text(encoding="utf-8")))
     expect(f"manual is {pages} pages", f"({pages} pages)" in post and f"{pages}-page" in post)
 
+# The README repeats the table and the counts; it must not drift either.
+readme = (ROOT / "README.md").read_text(encoding="utf-8")
+expect("README table row: Knowledge Base only", f"| Knowledge Base only | {of(v['kb'])} | {of(k)} |" in readme)
+expect("README table row: Dataset only", f"| Dataset only | {of(v['dataset'])} |" in readme)
+expect("README table row: Both", f"| Both (what the app runs) | {of(v['both'])} | {of(b)} |" in readme)
+for phrase in counts.values():
+    expect(f"README count '{phrase}'", phrase in readme)
+
 # Writing rule: no em or en dashes.
-expect("no em or en dashes", "—" not in post and "–" not in post)
+for name, text in (("post", post), ("README", readme)):
+    expect(f"no em or en dashes in {name}", "—" not in text and "–" not in text)
 
 print(f"\n{len(failures)} failures")
 sys.exit(1 if failures else 0)

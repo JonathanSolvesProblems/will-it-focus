@@ -8,3 +8,4 @@ __pycache__/
 shots/
 eval/*.log
 eval/probe-*.ndjson
+broll/

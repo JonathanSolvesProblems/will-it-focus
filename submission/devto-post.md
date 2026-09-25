@@ -37,7 +37,8 @@ https://github.com/JonathanSolvesProblems/will-it-focus
 
 - `studio/schemaTypes/`: the schema
 - `data/build-records.mjs`: builds every record from its source, with the verbatim quote
-- `scripts/check_quotes.py`: fails if any quote in the dataset is not on the stated page of the manufacturer's PDF
+- `scripts/check_quotes.py`: fails if any quote in the dataset is not on the stated page of its PDF, or not in the collected page text for web sources
+- `scripts/check_claims.py`: fails if a number in this post or the README disagrees with the data
 - `web/src/agent/`: the agent, the quote gate and the cost guards
 - `eval/`: 20 questions, three runs each, and every answer the agent gave
 
@@ -57,7 +58,7 @@ I started with one endpoint and attached both sources. Saving the dataset replac
 - Every field a source might not state accepts "not stated by any source". A schema that forces yes or no forces the model to guess.
 - Each fact carries a `source` object: URL, publisher, page, retrieved date, and the exact sentence it rests on.
 
-**Where the Knowledge Base fits.** It is good at explaining. It rewrote the T5i manual into ten navigable entries, and the agent uses them for the why. It also rewrites, which is its job, so an entry is a summary and not Canon's words. The page labels every Knowledge Base point that way. The first time I ran the agent on the Knowledge Base alone, it put quotation marks around 13 sentences, and none of them are in Canon's manual. That is what pushed me to keep the verbatim text in typed records.
+**Where the Knowledge Base fits.** It is good at explaining. It rewrote the six PDFs into ten navigable entries, and the agent uses them for the why. It also rewrites, which is its job, so an entry is a summary and not Canon's words. The page labels every Knowledge Base point that way. The first time I ran the agent on the Knowledge Base alone, it put quotation marks around 13 sentences, and none of them appear in any of the six documents. That is what pushed me to keep the verbatim text in typed records.
 
 **Measured.** 20 questions whose answers are in Sigma's, Canon's and Metabones' own tables and manuals, run three ways on gpt-5.4-mini:
 

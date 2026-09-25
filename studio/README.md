@@ -1,9 +1,7 @@
-# Sanity Clean Content Studio
+# studio
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+The Sanity Studio and schema for project `qnl9jh8n`. Deployed at https://will-it-focus.sanity.studio
 
-Now you can do the following things:
-
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- `schemaTypes/`: mount, sensorFormat, body, lens, adapter, compatibilityRecord, focusCaveat, and the `source` object every fact carries
+- `npm run dev` runs it locally; `npx sanity schema deploy` publishes the schema Sanity Context reads in GROQ mode
+- Records are not edited here. They are built by `../data/build-records.mjs` and imported with `npx sanity dataset import ../data/records.ndjson production --replace`
