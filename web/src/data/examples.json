@@ -1,1 +1,473 @@
-{"answers": []}
+{
+  "model": "gpt-5.5",
+  "answers": [
+    {
+      "question": "Why does my Canon T5i with the EF-S 18-55 IS STM hunt for focus?",
+      "steps": [
+        {
+          "tool": "dataset_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "kb_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"bodies\": *[_type == \"body\" && (name match \"T5i\" || aliases[] match \"T5i\" || name match \"700D\" || aliases[] match \"700D\")]{_id, name, aliases, \"mountId\": mount._ref, liveViewAf, videoContinuousAf},\n  \"lenses\": *[_type == \"lens\" && ((name match \"18-55\" && name match \"STM\") || aliases[] match \"18-55\" || aliases[] match \"STM\")]{_id, name, aliases, \"mountId\": mount._ref, focusMotor}\n}"
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n \"compat\": *[_type == \"compatibilityRecord\"\n   && (!defined(bodies) || count(bodies) == 0 || \"body-canon-t5i\" in bodies[]._ref)\n   && (\"lens-canon-efs-18-55-is-stm\" in lenses[]._ref || lensMount._ref == \"mount-canon-ef-s\" || focusMotor == \"stm\")\n   && (!defined(adapters) || count(adapters) == 0)\n ]{_id, shootingMode, singleAf, continuousAf, dmf, behaviour, bodyCondition, note, source},\n \"caveats\": *[_type == \"focusCaveat\"\n   && (!defined(bodies) || count(bodies) == 0 || \"body-canon-t5i\" in bodies[]._ref)\n   && (!defined(lenses) || count(lenses) == 0 || \"lens-canon-efs-18-55-is-stm\" in lenses[]._ref)\n ]{_id, title, shootingMode, appliesWhen, effect, remedy, source}\n}"
+        },
+        {
+          "tool": "kb_knowledge_base_read",
+          "detail": "live_view_autofocus, viewfinder_autofocus/af_operation_and_point_selection, lens_autofocus"
+        }
+      ],
+      "verdict": {
+        "headline": "Your T5i and EF-S 18-55 IS STM are manufacturer-covered for smooth Movie Servo AF, but focus hunting is usually from difficult AF subjects/lighting, Live View or video AF behavior, or the camera choosing the wrong target.",
+        "covered": true,
+        "notCoveredReason": null,
+        "modes": [
+          {
+            "mode": "liveViewPhoto",
+            "singleAf": "notStated",
+            "continuousAf": "notStated",
+            "findings": [
+              {
+                "point": "Canon records a Live View focus caveat for the T5i: low contrast, low light, repetitive patterns, and moving subjects can make the camera hunt or fail to lock. Canon, page 165.",
+                "recordId": "caveat-t5i-liveview-difficult",
+                "quote": "Shooting conditions that make focusing difficult",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Canon",
+                  "url": "https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf",
+                  "page": 165,
+                  "title": "EOS REBEL T5i / EOS 700D Instruction Manual"
+                }
+              },
+              {
+                "point": "The knowledge base summarizes the T5i manual as saying Live View uses contrast-detect or hybrid AF for most methods, which is slower than viewfinder phase-detect AF. Difficult cases include low contrast, low light, repetitive patterns, fine lines, moving subjects, very small subjects, edge-of-frame subjects, reflective subjects, and mixed near/far subjects inside one AF point.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "live_view_autofocus",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "Use FlexiZone-Single and place the AF point on a clear edge or the subject’s eye; add light or choose a higher-contrast target. For Live View stills, try Quick mode for faster phase-detect focusing, or switch the lens to MF if AF will not lock.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": null
+            }
+          },
+          {
+            "mode": "viewfinderPhoto",
+            "singleAf": "notStated",
+            "continuousAf": "notStated",
+            "findings": [
+              {
+                "point": "Canon records that the T5i viewfinder AF can fail on certain difficult subjects such as very low contrast, very low light, strong backlight, reflective subjects, near/far overlap, or repetitive patterns. Canon, page 103.",
+                "recordId": "caveat-t5i-viewfinder-difficult",
+                "quote": "Autofocus can fail to achieve focus (viewfinder’s focus confirmation light <o> blinks) with certain subjects such as the following:",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Canon",
+                  "url": "https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf",
+                  "page": 103,
+                  "title": "EOS REBEL T5i / EOS 700D Instruction Manual"
+                }
+              },
+              {
+                "point": "If you are in Basic Zone auto modes, Canon says the camera normally focuses the closest subject, so it may not focus the subject you intended. Canon, page 100.",
+                "recordId": "caveat-t5i-basic-zone-closest",
+                "quote": "In Basic Zone modes, the camera will normally focus the closest subject automatically. Therefore, it may not always focus your target subject.",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Canon",
+                  "url": "https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf",
+                  "page": 100,
+                  "title": "EOS REBEL T5i / EOS 700D Instruction Manual"
+                }
+              },
+              {
+                "point": "The knowledge base summarizes the T5i viewfinder AF as a 9-point phase-detect system. For still subjects, One-Shot locks focus; for motion, AI Servo keeps adjusting. Manual AF-point selection in Creative Zone modes lets you tell the camera exactly where to focus.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "viewfinder_autofocus/af_operation_and_point_selection",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "Use P, Tv, Av, or M instead of full auto; manually select an AF point, preferably over a high-contrast part of the subject. For a still subject, use One-Shot AF, lock focus, and recompose. If it still cannot lock, focus on another object at the same distance or switch the lens to MF.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": null
+            }
+          },
+          {
+            "mode": "video",
+            "singleAf": "notStated",
+            "continuousAf": "supported",
+            "findings": [
+              {
+                "point": "Canon lists the EF-S 18-55 IS STM Movie Servo AF function as compatible with the EOS Rebel T5i/700D. Canon, page 2.",
+                "recordId": "compat-t5i-video-18-55-stm",
+                "quote": "Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Canon",
+                  "url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf",
+                  "page": 2,
+                  "title": null
+                }
+              },
+              {
+                "point": "The knowledge base summarizes Canon’s movie guidance: Movie Servo AF continuously focuses, but fast subjects moving toward or away from the camera, close subjects, panning, zooming, or magnification can make focus momentarily shift or stop.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "live_view_autofocus",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              },
+              {
+                "point": "The knowledge base summarizes the STM lens behavior: the EF-S 18-55 IS STM is designed for quiet, smooth Movie Servo AF on compatible bodies like the T5i, but it is still an electronic focus-by-wire system rather than a direct mechanical focusing ring.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "lens_autofocus",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "For video, use Movie Servo AF only when you need continuous tracking. If the camera keeps breathing or hunting, pause or disable Movie Servo AF, pre-focus, use FlexiZone-Single on the subject, add light/contrast, or focus manually for the shot.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": true
+            }
+          },
+          {
+            "mode": "any",
+            "singleAf": "notStated",
+            "continuousAf": "notStated",
+            "findings": [
+              {
+                "point": "One lens-specific caveat is not hunting, but can look like a focus problem: the STM lens cannot be manually focused electronically when the camera is off. Canon, page 7.",
+                "recordId": "caveat-18-55-stm-power-off",
+                "quote": "Manual focus adjustments are not possible when the camera is OFF.",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Canon",
+                  "url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf",
+                  "page": 7,
+                  "title": null
+                }
+              },
+              {
+                "point": "The knowledge base summarizes that this STM lens also enters sleep behavior; if the camera or lens has slept, half-pressing the shutter wakes it before focusing normally.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "lens_autofocus",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "If the lens seems unresponsive, half-press the shutter to wake it, wait a moment after power-on, and make sure the lens switch is set to AF for autofocus or MF for manual focus.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": null
+            }
+          }
+        ],
+        "checks": {
+          "quotes": 5,
+          "verified": 5
+        },
+        "model": "gpt-5.5"
+      },
+      "generatedAt": "2026-09-25T11:08:51.951Z"
+    },
+    {
+      "question": "Sigma 35mm F1.4 Art on a Sony a7 IV through the MC-11: AF-C and DMF?",
+      "steps": [
+        {
+          "tool": "dataset_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "kb_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"bodies\": *[_type == \"body\" && (name match \"a7 IV\" || aliases[] match \"a7 IV\" || name match \"α7 IV\" || aliases[] match \"α7 IV\")]{_id, name, aliases, \"mountId\": mount._ref},\n  \"lenses\": *[_type == \"lens\" && (name match \"Sigma 35mm F1.4\" || aliases[] match \"Sigma 35mm F1.4\" || name match \"35mm F1.4 Art\" || aliases[] match \"35mm F1.4 Art\" || name match \"35mm F1.4 DG HSM\" || aliases[] match \"35mm F1.4 DG HSM\")]{_id, name, aliases, focusMotor, \"mountId\": mount._ref},\n  \"adapters\": *[_type == \"adapter\" && (name match \"MC-11\" || aliases[] match \"MC-11\")]{_id, name, maker, \"lensMountId\": lensMount._ref, \"bodyMountId\": bodyMount._ref}\n}"
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"compat\": *[_type == \"compatibilityRecord\"\n    && (!defined(bodies) || count(bodies) == 0 || \"body-sony-a7iv\" in bodies[]._ref)\n    && (\"lens-sigma-art-35mm-f1-4-dg-hsm\" in lenses[]._ref || focusMotor == \"hsm\")\n    && (\"adapter-sigma-mc11-ef-e\" in adapters[]._ref || \"adapter-sigma-mc11-sa-e\" in adapters[]._ref)\n  ]{_id, shootingMode, singleAf, continuousAf, dmf, behaviour, bodyCondition, note, \"lenses\": lenses[]->{_id,name}, \"adapters\": adapters[]->{_id,name}, source},\n  \"caveats\": *[_type == \"focusCaveat\"\n    && (!defined(bodies) || count(bodies) == 0 || \"body-sony-a7iv\" in bodies[]._ref)\n    && (!defined(lenses) || count(lenses) == 0 || \"lens-sigma-art-35mm-f1-4-dg-hsm\" in lenses[]._ref)\n    && (@ match text::query(\"MC-11\") || title match text::query(\"MC-11\") || appliesWhen match text::query(\"MC-11\"))\n  ]{_id, title, shootingMode, appliesWhen, effect, remedy, \"bodies\": bodies[]->{_id,name}, \"lenses\": lenses[]->{_id,name}, source}\n}"
+        },
+        {
+          "tool": "kb_knowledge_base_read",
+          "detail": "adapter_compatibility/sigma_mc11"
+        }
+      ],
+      "verdict": {
+        "headline": "Yes for AF-S, but no for AF-C and no for DMF with the Sigma 35mm F1.4 DG HSM Art on the Sony a7 IV through the Sigma MC-11.",
+        "covered": true,
+        "notCoveredReason": null,
+        "modes": [
+          {
+            "mode": "any",
+            "singleAf": "supported",
+            "continuousAf": "notSupported",
+            "findings": [
+              {
+                "point": "Sigma’s MC-11 lens table for the 35mm F1.4 DG HSM Art shows AF-S supported, AFC/AFA not supported, and DMF not supported; Sigma, page 1.",
+                "recordId": "compat-mc11-sigma-art-35mm-f1-4-dg-hsm",
+                "quote": "35mm F1.4 DG HSM ○ × ×",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Sigma",
+                  "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+                  "page": 1,
+                  "title": "MC-11 lens compatibility table, row: Lens | AFS | AFC/AFA | DMF (○ supported, × not supported)"
+                }
+              },
+              {
+                "point": "Sigma also states globally for the MC-11 that the camera’s AF-C is not supported; Sigma, page 1.",
+                "recordId": "compat-mc11-afc",
+                "quote": "The camera's AF-C is not supported.",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Sigma",
+                  "url": "https://www.sigma-global.com/en/support/download/sigma_mc11_camera_en_ver3.pdf",
+                  "page": 1,
+                  "title": null
+                }
+              },
+              {
+                "point": "The knowledge-base summary lists α7IV among Sigma’s checked Sony E-mount bodies for the MC-11 and summarizes the same restrictions: AF-C/AFA unsupported, and this 35mm Art row has DMF marked unsupported.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "adapter_compatibility/sigma_mc11",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "Use AF-S for stills. Do not expect AF-C tracking or DMF with this lens on the MC-11; switch to manual focus when you need manual override, or use a native E-mount lens/combination with AF-C and DMF support.",
+            "backed": {
+              "singleAf": true,
+              "continuousAf": true
+            }
+          }
+        ],
+        "checks": {
+          "quotes": 2,
+          "verified": 2
+        },
+        "model": "gpt-5.5"
+      },
+      "generatedAt": "2026-09-25T11:09:18.234Z"
+    },
+    {
+      "question": "Canon EF 50mm f/1.8 II on a Sony body with the Metabones Mark V",
+      "steps": [
+        {
+          "tool": "dataset_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "kb_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"bodiesSony\": *[_type == \"body\" && (name match text::query(\"Sony\") || maker match \"Sony\")]{_id, name, aliases, \"mount\": mount->name}[0...50],\n  \"lenses\": *[_type == \"lens\" && (name match text::query(\"Canon EF 50mm f/1.8 II\") || aliases[] match text::query(\"Canon EF 50mm f/1.8 II\") || name match text::query(\"50mm 1.8 II\") || aliases[] match text::query(\"50mm 1.8 II\"))]{_id, name, aliases, focusMotor, \"mountId\": mount._ref, \"mount\": mount->name},\n  \"adapters\": *[_type == \"adapter\" && (name match text::query(\"Metabones Mark V\") || aliases[] match text::query(\"Metabones Mark V\") || name match text::query(\"Metabones\") || aliases[] match text::query(\"Metabones\"))]{_id, name, maker, \"lensMountId\": lensMount._ref, \"lensMount\": lensMount->name, \"bodyMount\": bodyMount->name}\n}"
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"compat\": *[_type == \"compatibilityRecord\"\n    && (\"lens-canon-ef-50-f18-ii\" in lenses[]._ref || lensMount._ref == \"mount-canon-ef\" || focusMotor == \"microMotor\")\n    && \"adapter-metabones-ef-e-t-mkv\" in adapters[]._ref\n  ]{_id, scope, shootingMode, singleAf, continuousAf, dmf, behaviour, bodyCondition, note, source, \"bodies\": bodies[]->{_id,name}, \"lenses\": lenses[]->{_id,name}, \"lensMount\": lensMount->name, focusMotor, \"adapters\": adapters[]->{_id,name}},\n  \"caveats\": *[_type == \"focusCaveat\"\n    && ((!defined(lenses) || count(lenses)==0 || \"lens-canon-ef-50-f18-ii\" in lenses[]._ref)\n        || title match text::query(\"Metabones Canon EF 50 1.8\") || appliesWhen match text::query(\"Metabones Canon EF 50 1.8\"))\n  ]{_id, title, shootingMode, appliesWhen, effect, remedy, source, \"bodies\": bodies[]->{_id,name}, \"lenses\": lenses[]->{_id,name}}\n}"
+        }
+      ],
+      "verdict": {
+        "headline": "Covered, but the exact Sony body matters: with the Metabones Mark V this EF 50mm f/1.8 II is only listed as limited for AF accuracy, AF-C is limited on older/no-PDAF Sony bodies, and continuous video AF is only stated for supported 2015+ PDAF bodies in Advanced mode.",
+        "covered": true,
+        "notCoveredReason": null,
+        "modes": [
+          {
+            "mode": "any",
+            "singleAf": "limited",
+            "continuousAf": "notStated",
+            "findings": [
+              {
+                "point": "Metabones lists the Canon EF 50mm f/1.8 II for the EF-to-E Mark V, but only says autofocus may be usable and may not be accurate on a PDAF camera. Source: Metabones compatibility page.",
+                "recordId": "compat-metabones-mkv-50-f18-ii",
+                "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/products/details/mb-ef-e-bt5",
+                  "page": null,
+                  "title": null
+                }
+              }
+            ],
+            "remedy": "Use a Sony body with phase-detect AF if you want the best chance of AF working, and check focus critically because the manufacturer does not promise accurate AF for this lens.",
+            "backed": {
+              "singleAf": true,
+              "continuousAf": null
+            }
+          },
+          {
+            "mode": "any",
+            "singleAf": "supported",
+            "continuousAf": "limited",
+            "findings": [
+              {
+                "point": "For Sony bodies from 2014 or earlier, or bodies without phase-detect AF such as the A7S II, Metabones says AF-S works, but AF-C can hunt or be inaccurate. Source: Metabones green/power-save-mode page.",
+                "recordId": "compat-metabones-mkv-legacy",
+                "quote": "AF-C may have unsatisfactory performance and/or accuracy and may suffer from excessive hunting, depending on lens - use AF-S or DMF",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/article/of/green-power-save-mode",
+                  "page": null,
+                  "title": null
+                }
+              }
+            ],
+            "remedy": "If your Sony body is older or lacks PDAF, prefer AF-S or DMF rather than AF-C.",
+            "backed": {
+              "singleAf": true,
+              "continuousAf": true
+            }
+          },
+          {
+            "mode": "video",
+            "singleAf": "notStated",
+            "continuousAf": "supported",
+            "findings": [
+              {
+                "point": "For Sony bodies from 2015 onward with phase-detect AF, and with the adapter in Advanced mode, Metabones states continuous video AF support. Source: Metabones green/power-save-mode page.",
+                "recordId": "compat-metabones-mkv-modern",
+                "quote": "Continuous video AF with phase-detection AF on supported cameras",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/article/of/green-power-save-mode",
+                  "page": null,
+                  "title": null
+                }
+              }
+            ],
+            "remedy": "For video AF, use a supported 2015-or-newer Sony PDAF body and put the Metabones adapter in Advanced mode; otherwise the dataset does not state that continuous video AF works.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": true
+            }
+          }
+        ],
+        "checks": {
+          "quotes": 3,
+          "verified": 3
+        },
+        "model": "gpt-5.5"
+      },
+      "generatedAt": "2026-09-25T11:09:41.321Z"
+    },
+    {
+      "question": "Nikon AF-S 50mm f/1.8G on a Canon EOS R6 with an F-to-RF adapter",
+      "steps": [
+        {
+          "tool": "dataset_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "kb_initial_context",
+          "detail": null
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"bodies\": *[_type == \"body\" && (name match \"Canon EOS R6\" || aliases[] match \"Canon EOS R6\" || name match \"EOS R6\" || aliases[] match \"EOS R6\")]{_id, name, aliases, \"mountId\": mount->_id, \"mountName\": mount->name},\n  \"lenses\": *[_type == \"lens\" && (name match \"Nikon AF-S 50mm f/1.8G\" || aliases[] match \"Nikon AF-S 50mm f/1.8G\" || name match \"AF-S 50mm\" || aliases[] match \"AF-S 50mm\" || name match \"50mm f/1.8G\" || aliases[] match \"50mm f/1.8G\")]{_id, name, aliases, focusMotor, \"mountId\": mount->_id, \"mountName\": mount->name},\n  \"adapters\": *[_type == \"adapter\" && (name match \"F-to-RF\" || aliases[] match \"F-to-RF\" || name match \"Nikon F Canon RF\" || name match \"F RF\" || name match \"F to RF\")]{_id, name, maker, electronic, \"lensMountId\": lensMount->_id, \"lensMountName\": lensMount->name, \"bodyMountId\": bodyMount->_id, \"bodyMountName\": bodyMount->name}\n}"
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"bodies\": *[_type == \"body\" && (name match \"R6\" || aliases[] match \"R6\" || name match \"Canon\" || aliases[] match \"Canon\")]{_id, name, aliases, \"mountId\": mount->_id, \"mountName\": mount->name}[0...20],\n  \"lenses\": *[_type == \"lens\" && (name match \"Nikon\" || aliases[] match \"Nikon\" || name match \"50mm\" || aliases[] match \"50mm\" || name match \"AF-S\" || aliases[] match \"AF-S\")]{_id, name, aliases, focusMotor, \"mountId\": mount->_id, \"mountName\": mount->name}[0...30],\n  \"adapters\": *[_type == \"adapter\"]{_id, name, maker, electronic, \"lensMountId\": lensMount->_id, \"lensMountName\": lensMount->name, \"bodyMountId\": bodyMount->_id, \"bodyMountName\": bodyMount->name}\n}"
+        },
+        {
+          "tool": "dataset_groq_query",
+          "detail": "{\n  \"mounts\": *[_type == \"mount\" && (name match \"Nikon\" || name match \"F\" || name match \"RF\" || name match \"Canon RF\")]{_id, name, maker, system},\n  \"compatCandidates\": *[_type == \"compatibilityRecord\" && (@ match text::query(\"Nikon F RF EOS R6 AF-S 50mm\"))]{_id, shootingMode, singleAf, continuousAf, \"lenses\": lenses[]->name, \"lensMount\": lensMount->name, focusMotor, \"bodies\": bodies[]->name, \"adapters\": adapters[]->name, source}[0...10],\n  \"caveatCandidates\": *[_type == \"focusCaveat\" && (@ match text::query(\"Nikon F RF EOS R6 AF-S 50mm\"))]{_id, title, appliesWhen, shootingMode, effect, remedy, \"bodies\": bodies[]->name, \"lenses\": lenses[]->name, source}[0...10]\n}"
+        }
+      ],
+      "verdict": {
+        "headline": "No manufacturer record in this dataset covers the Nikon AF-S 50mm f/1.8G on a Canon EOS R6 with an F-to-RF adapter.",
+        "covered": false,
+        "notCoveredReason": "The dataset lookup did not find a Canon EOS R6 body record, a Nikon AF-S 50mm f/1.8G lens record, or an F-to-RF adapter record, so there is no applicable manufacturer compatibility record for this combination.",
+        "modes": [
+          {
+            "mode": "any",
+            "singleAf": "notStated",
+            "continuousAf": "notStated",
+            "findings": [
+              {
+                "point": "No matching manufacturer compatibility record or focus caveat was found for this body/lens/adapter combination in the dataset.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": null,
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              },
+              {
+                "point": "Because the adapter is not covered, I cannot infer autofocus just because a physical F-to-RF adapter may fit.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": null,
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "Use a manufacturer-documented electronic adapter/lens/body combination, or treat this setup as not verified for autofocus by this dataset and be prepared to focus manually.",
+            "backed": {
+              "singleAf": null,
+              "continuousAf": null
+            }
+          }
+        ],
+        "checks": {
+          "quotes": 0,
+          "verified": 0
+        },
+        "model": "gpt-5.5"
+      },
+      "generatedAt": "2026-09-25T11:10:04.462Z"
+    }
+  ]
+}

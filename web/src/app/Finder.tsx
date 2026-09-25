@@ -22,7 +22,7 @@ type Phase =
   | {kind: 'done'; verdict: Answered; saved: boolean}
   | {kind: 'error'; message: string}
 
-export function Finder({measured}: {measured: {kb: [number, number]; both: [number, number]} | null}) {
+export function Finder({measured}: {measured: {kb: [number, number]; both: [number, number]; questions: number} | null}) {
   const [question, setQuestion] = useState('')
   const [phase, setPhase] = useState<Phase>({kind: 'idle'})
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
@@ -153,7 +153,7 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
           {checks
             ? <>This answer: <em>{checks.verified}</em> of {checks.quotes} quotes found word for word in a manufacturer record</>
             : measured
-              ? <>Across 20 questions: <em>{measured.both[0]}</em> of {measured.both[1]} quotes verbatim with the dataset, against {measured.kb[0]} of {measured.kb[1]} from the knowledge base alone</>
+              ? <>Across {measured.questions} test questions: <em>{measured.both[0]}</em> of {measured.both[1]} quotes were the manufacturer&apos;s words with typed records, against {measured.kb[0]} of {measured.kb[1]} from the knowledge base alone</>
               : 'Every quote is checked against the manufacturer record it cites'}
         </span>
         <span>

@@ -1,0 +1,836 @@
+{
+  "model": "gpt-5.4-mini",
+  "ranAt": "2026-09-25T11:06:36.165Z",
+  "runs": [
+    {
+      "condition": "kb",
+      "id": "q01",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 21641,
+      "ms": 5718
+    },
+    {
+      "condition": "kb",
+      "id": "q02",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 21634,
+      "ms": 5251
+    },
+    {
+      "condition": "kb",
+      "id": "q03",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 17467,
+      "ms": 4855
+    },
+    {
+      "condition": "kb",
+      "id": "q04",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 21618,
+      "ms": 4820
+    },
+    {
+      "condition": "kb",
+      "id": "q05",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 16577,
+      "ms": 6230
+    },
+    {
+      "condition": "kb",
+      "id": "q06",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 17485,
+      "ms": 5456
+    },
+    {
+      "condition": "kb",
+      "id": "q07",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 10132,
+      "ms": 4165
+    },
+    {
+      "condition": "kb",
+      "id": "q08",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 21312,
+      "ms": 4768
+    },
+    {
+      "condition": "kb",
+      "id": "q09",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 23780,
+      "ms": 4986
+    },
+    {
+      "condition": "kb",
+      "id": "q10",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 17442,
+      "ms": 4735
+    },
+    {
+      "condition": "kb",
+      "id": "q11",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 17447,
+      "ms": 5032
+    },
+    {
+      "condition": "kb",
+      "id": "q12",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 28931,
+      "ms": 5393
+    },
+    {
+      "condition": "kb",
+      "id": "q13",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 12529,
+      "ms": 4280
+    },
+    {
+      "condition": "kb",
+      "id": "q14",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 16574,
+      "ms": 5116
+    },
+    {
+      "condition": "kb",
+      "id": "q15",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 37923,
+      "ms": 6952
+    },
+    {
+      "condition": "kb",
+      "id": "q16",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 29078,
+      "ms": 7781
+    },
+    {
+      "condition": "kb",
+      "id": "q17",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 27484,
+      "ms": 12697
+    },
+    {
+      "condition": "kb",
+      "id": "q18",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 15632,
+      "ms": 6779
+    },
+    {
+      "condition": "kb",
+      "id": "q19",
+      "calls": [
+        "kb_initial_context",
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 14084,
+      "ms": 8610
+    },
+    {
+      "condition": "kb",
+      "id": "q20",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 16110,
+      "ms": 8746
+    },
+    {
+      "condition": "dataset",
+      "id": "q01",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 28208,
+      "ms": 11353
+    },
+    {
+      "condition": "dataset",
+      "id": "q02",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 27487,
+      "ms": 7253
+    },
+    {
+      "condition": "dataset",
+      "id": "q03",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 27584,
+      "ms": 8041
+    },
+    {
+      "condition": "dataset",
+      "id": "q04",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 28647,
+      "ms": 7422
+    },
+    {
+      "condition": "dataset",
+      "id": "q05",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 27474,
+      "ms": 11056
+    },
+    {
+      "condition": "dataset",
+      "id": "q06",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 34515,
+      "ms": 11570
+    },
+    {
+      "condition": "dataset",
+      "id": "q07",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 39516,
+      "ms": 13256
+    },
+    {
+      "condition": "dataset",
+      "id": "q08",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 24009,
+      "ms": 6803
+    },
+    {
+      "condition": "dataset",
+      "id": "q09",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 27431,
+      "ms": 11184
+    },
+    {
+      "condition": "dataset",
+      "id": "q10",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 33069,
+      "ms": 20482
+    },
+    {
+      "condition": "dataset",
+      "id": "q11",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 24030,
+      "ms": 13860
+    },
+    {
+      "condition": "dataset",
+      "id": "q12",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 32885,
+      "ms": 9181
+    },
+    {
+      "condition": "dataset",
+      "id": "q13",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 53180,
+      "ms": 14912
+    },
+    {
+      "condition": "dataset",
+      "id": "q14",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 26683,
+      "ms": 7596
+    },
+    {
+      "condition": "dataset",
+      "id": "q15",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 38121,
+      "ms": 15235
+    },
+    {
+      "condition": "dataset",
+      "id": "q16",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 34801,
+      "ms": 9434
+    },
+    {
+      "condition": "dataset",
+      "id": "q17",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 28218,
+      "ms": 8256
+    },
+    {
+      "condition": "dataset",
+      "id": "q18",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 27805,
+      "ms": 6543
+    },
+    {
+      "condition": "dataset",
+      "id": "q19",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 28011,
+      "ms": 9528
+    },
+    {
+      "condition": "dataset",
+      "id": "q20",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 26201,
+      "ms": 9071
+    },
+    {
+      "condition": "both",
+      "id": "q01",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 30356,
+      "ms": 8059
+    },
+    {
+      "condition": "both",
+      "id": "q02",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 34956,
+      "ms": 10162
+    },
+    {
+      "condition": "both",
+      "id": "q03",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 38539,
+      "ms": 17670
+    },
+    {
+      "condition": "both",
+      "id": "q04",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 41202,
+      "ms": 11797
+    },
+    {
+      "condition": "both",
+      "id": "q05",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 35746,
+      "ms": 9654
+    },
+    {
+      "condition": "both",
+      "id": "q06",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 49269,
+      "ms": 16211
+    },
+    {
+      "condition": "both",
+      "id": "q07",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 30558,
+      "ms": 6719
+    },
+    {
+      "condition": "both",
+      "id": "q08",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 53357,
+      "ms": 12948
+    },
+    {
+      "condition": "both",
+      "id": "q09",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query"
+      ],
+      "tokens": 36662,
+      "ms": 18388
+    },
+    {
+      "condition": "both",
+      "id": "q10",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 35086,
+      "ms": 9211
+    },
+    {
+      "condition": "both",
+      "id": "q11",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 35396,
+      "ms": 9502
+    },
+    {
+      "condition": "both",
+      "id": "q12",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 35762,
+      "ms": 12585
+    },
+    {
+      "condition": "both",
+      "id": "q13",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 29461,
+      "ms": 9445
+    },
+    {
+      "condition": "both",
+      "id": "q14",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query"
+      ],
+      "tokens": 44252,
+      "ms": 10503
+    },
+    {
+      "condition": "both",
+      "id": "q15",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 58352,
+      "ms": 15058
+    },
+    {
+      "condition": "both",
+      "id": "q16",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 38993,
+      "ms": 10153
+    },
+    {
+      "condition": "both",
+      "id": "q17",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 50156,
+      "ms": 20107
+    },
+    {
+      "condition": "both",
+      "id": "q18",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 46422,
+      "ms": 12723
+    },
+    {
+      "condition": "both",
+      "id": "q19",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 33771,
+      "ms": 6678
+    },
+    {
+      "condition": "both",
+      "id": "q20",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 45407,
+      "ms": 12468
+    }
+  ]
+}

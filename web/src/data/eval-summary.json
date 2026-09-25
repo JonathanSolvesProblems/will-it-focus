@@ -1,1 +1,27 @@
-{"kb": null, "both": null}
+{
+  "model": "gpt-5.4-mini",
+  "ranAt": "2026-09-25T11:06:36.165Z",
+  "questions": 20,
+  "kb": [
+    1,
+    10
+  ],
+  "both": [
+    21,
+    22
+  ],
+  "verdicts": {
+    "kb": [
+      37,
+      43
+    ],
+    "dataset": [
+      39,
+      43
+    ],
+    "both": [
+      38,
+      43
+    ]
+  }
+}

@@ -63,6 +63,13 @@ def main() -> int:
         for m in misses:
             print(f"           miss {m}")
     (results / "score.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    # The app's footer reads its numbers from here, so the page cannot drift from the measured result.
+    if results == ROOT / "eval" / "results" and {"kb", "both"} <= report.keys():
+        runs = json.loads((results / "runs.json").read_text(encoding="utf-8"))
+        summary = {"model": runs["model"], "ranAt": runs["ranAt"], "questions": len(questions),
+                   "kb": report["kb"]["quotes"], "both": report["both"]["quotes"],
+                   "verdicts": {c: report[c]["verdictFields"] for c in report}}
+        (ROOT / "web" / "src" / "data" / "eval-summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     return 0
 
 

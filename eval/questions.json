@@ -1,65 +1,253 @@
 {
-  "about": "Each expected value is transcribed from the manufacturer's own table or manual, cited in `source`. Values: supported, limited, notSupported, notCovered (no manufacturer source in the dataset or knowledge base says). Sigma MC-11 rows: SIGMA_MC_11_lens_en.pdf, columns AFS | AFC/AFA | DMF.",
-  "questions": [
-    {"id": "q01", "question": "I shoot a Sony a7 IV. Through a Sigma MC-11, does the Sigma 35mm F1.4 DG HSM Art autofocus in AF-S, does AF-C work, and can I use DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "35mm F1.4 DG HSM | ○ | × | ×"}},
-    {"id": "q02", "question": "Sigma 50mm F1.4 DG HSM Art on a Sony a6400 with the MC-11: AF-S, AF-C, and DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "supported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "50mm F1.4 DG HSM | ○ | × | ○"}},
-    {"id": "q03", "question": "Does the Sigma 18-35mm F1.8 DC HSM Art support AF-S, AF-C and DMF on an MC-11 with a Sony a6600?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "18-35mm F1.8 DC HSM | ○ | × | ×"}},
-    {"id": "q04", "question": "Sigma 24-70mm F2.8 DG OS HSM Art, MC-11, Sony a7 III. Which of AF-S, AF-C and DMF work?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "supported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "24-70mm F2.8 DG OS HSM | ○ | × | ○"}},
-    {"id": "q05", "question": "Will my Sigma 24-105mm F4 DG OS HSM Art do AF-S, AF-C and DMF on a Sony a7R IV through the MC-11?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "24-105mm F4 DG OS HSM | ○ | × | ×"}},
-    {"id": "q06", "question": "Sigma 120-300mm F2.8 DG OS HSM Sports on a Sony a9 II via MC-11: AF-S, AF-C, DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "120-300mm F2.8 DG OS HSM | ○ | × | ×"}},
-    {"id": "q07", "question": "Does the Sigma 150-600mm F5-6.3 DG OS HSM Contemporary support AF-S, AF-C and DMF on a Sony a7 IV with the MC-11?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "supported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "150-600mm F5-6.3 DG OS HSM (Contemporary) | ○ | × | ○"}},
-    {"id": "q08", "question": "Sigma 17-70mm F2.8-4 DC MACRO OS HSM Contemporary on an MC-11 and Sony a6000: AF-S, AF-C, DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "17-70mm F2.8-4 DC MACRO OS HSM | ○ | × | ×"}},
-    {"id": "q09", "question": "Sigma 85mm F1.4 DG HSM Art with the MC-11 on a Sony a7C: can it AF-S, AF-C, and DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "supported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "85mm F1.4 DG HSM | ○ | × | ○"}},
-    {"id": "q10", "question": "Sigma 30mm F1.4 DC HSM Art on a Sony a6100 through the MC-11: AF-S, AF-C and DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "30mm F1.4 DC HSM | ○ | × | ×"}},
-    {"id": "q11", "question": "Sigma 14mm F1.8 DG HSM Art on the MC-11 with a Sony a7S III: AF-S, AF-C and DMF?",
-     "expected": {"singleAf": "supported", "continuousAf": "notSupported", "dmf": "supported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "14mm F1.8 DG HSM | ○ | × | ○"}},
-    {"id": "q12", "question": "I want to film with a Sigma 50mm F1.4 DG HSM Art on a Sony a6400 through the MC-11. Will it keep focus continuously while recording video?",
-     "expected": {"continuousAf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "The camera's AF-C is not supported."}},
-    {"id": "q13", "question": "Canon EOS Rebel T5i with the EF-S 18-55mm IS STM kit lens: does continuous autofocus work while recording video?",
-     "expected": {"continuousAf": "supported"},
-     "source": {"url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf", "page": 2, "quote": "Stepping motor with lead screws achieves quiet, smooth Movie Servo AF."}},
-    {"id": "q14", "question": "Canon EOS 100D (Rebel SL1) and the EF-S 18-55mm f/3.5-5.6 IS STM: continuous AF during video?",
-     "expected": {"continuousAf": "supported"},
-     "source": {"url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf", "page": 2, "quote": "Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)"}},
-    {"id": "q15", "question": "Can the original Canon EOS M use Movie Servo AF with the EF-S 18-55mm IS STM, using Canon's EF-EOS M adapter?",
-     "expected": {"continuousAf": "supported"},
-     "source": {"url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf", "page": 2, "quote": "EOS M (when using with Mount Adapter EF-EOS M)"}},
-    {"id": "q16", "question": "On a Canon T5i in live view, how well does the EF 50mm f/1.8 II autofocus with FlexiZone or face tracking?",
-     "expected": {"singleAf": "limited"},
-     "source": {"url": "https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf", "page": 165, "quote": "it may take a longer time to achieve focus or the camera may not be able to achieve correct focus."}},
-    {"id": "q17", "question": "Canon EF 50mm f/1.8 II on a Sony body with the Metabones EF-E T Smart Adapter Mark V: will autofocus be accurate?",
-     "expected": {"singleAf": "limited"},
-     "source": {"url": "https://www.metabones.com/products/details/mb-ef-e-bt5", "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)"}},
-    {"id": "q18", "question": "Will my Canon EF 40mm f/2.8 STM autofocus on a Canon EOS R1 with the Mount Adapter EF-EOS R, single-shot and continuous?",
-     "expected": {"singleAf": "supported", "continuousAf": "supported"},
-     "source": {"url": "https://www.canon-europe.com/lenses/eos-r-adapters/", "quote": "The EOS R System adapters offer full compatibility with Canon EF and EF-S lenses"}},
-    {"id": "q19", "question": "Can I use a teleconverter between my Sigma 70-200mm F2.8 DG OS HSM Sports and the MC-11 on a Sony a7 IV and still autofocus?",
-     "expected": {"singleAf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/sigma_mc11_camera_en_ver3.pdf", "quote": "Cannot be used with teleconverter."}},
-    {"id": "q20", "question": "Will a Nikon AF-S 50mm f/1.8G autofocus on a Canon EOS R6 through a third-party F-to-RF adapter?",
-     "expected": {"singleAf": "notCovered"},
-     "source": {"url": null, "quote": null, "note": "No manufacturer source in this dataset or knowledge base covers Nikon F lenses on Canon RF bodies. The correct answer is to say so, not to guess."}}
-  ]
+ "about": "Each expected value is transcribed from the manufacturer's own table or manual, cited in `source`. Values: supported, limited, notSupported, notCovered (no manufacturer source in the dataset or knowledge base says). Sigma MC-11 rows: SIGMA_MC_11_lens_en.pdf, columns AFS | AFC/AFA | DMF.",
+ "questions": [
+  {
+   "id": "q01",
+   "question": "I shoot a Sony a7 IV. Through a Sigma MC-11, does the Sigma 35mm F1.4 DG HSM Art autofocus in AF-S, does AF-C work, and can I use DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "35mm F1.4 DG HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q02",
+   "question": "Sigma 50mm F1.4 DG HSM Art on a Sony a6400 with the MC-11: AF-S, AF-C, and DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "supported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "50mm F1.4 DG HSM | ○ | × | ○"
+   }
+  },
+  {
+   "id": "q03",
+   "question": "Does the Sigma 18-35mm F1.8 DC HSM Art support AF-S, AF-C and DMF on an MC-11 with a Sony a6600?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "18-35mm F1.8 DC HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q04",
+   "question": "Sigma 24-70mm F2.8 DG OS HSM Art, MC-11, Sony a7 III. Which of AF-S, AF-C and DMF work?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "supported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "24-70mm F2.8 DG OS HSM | ○ | × | ○"
+   }
+  },
+  {
+   "id": "q05",
+   "question": "Will my Sigma 24-105mm F4 DG OS HSM Art do AF-S, AF-C and DMF on a Sony a7R IV through the MC-11?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "24-105mm F4 DG OS HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q06",
+   "question": "Sigma 120-300mm F2.8 DG OS HSM Sports on a Sony a9 II via MC-11: AF-S, AF-C, DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "120-300mm F2.8 DG OS HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q07",
+   "question": "Does the Sigma 150-600mm F5-6.3 DG OS HSM Contemporary support AF-S, AF-C and DMF on a Sony a7 IV with the MC-11?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "supported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "150-600mm F5-6.3 DG OS HSM (Contemporary) | ○ | × | ○"
+   }
+  },
+  {
+   "id": "q08",
+   "question": "Sigma 17-70mm F2.8-4 DC MACRO OS HSM Contemporary on an MC-11 and Sony a6000: AF-S, AF-C, DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "17-70mm F2.8-4 DC MACRO OS HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q09",
+   "question": "Sigma 85mm F1.4 DG HSM Art with the MC-11 on a Sony a7C: can it AF-S, AF-C, and DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "supported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "85mm F1.4 DG HSM | ○ | × | ○"
+   }
+  },
+  {
+   "id": "q10",
+   "question": "Sigma 30mm F1.4 DC HSM Art on a Sony a6100 through the MC-11: AF-S, AF-C and DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "30mm F1.4 DC HSM | ○ | × | ×"
+   }
+  },
+  {
+   "id": "q11",
+   "question": "Sigma 14mm F1.8 DG HSM Art on the MC-11 with a Sony a7S III: AF-S, AF-C and DMF?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "notSupported",
+    "dmf": "supported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf",
+    "quote": "14mm F1.8 DG HSM | ○ | × | ○"
+   }
+  },
+  {
+   "id": "q12",
+   "question": "I want to film with a Sigma 50mm F1.4 DG HSM Art on a Sony a6400 through the MC-11. Will it keep focus continuously while recording video?",
+   "expected": {
+    "continuousAf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/sigma_mc11_camera_en_ver3.pdf",
+    "quote": "The camera's AF-C is not supported."
+   }
+  },
+  {
+   "id": "q13",
+   "question": "Canon EOS Rebel T5i with the EF-S 18-55mm IS STM kit lens: does continuous autofocus work while recording video?",
+   "expected": {
+    "continuousAf": "supported"
+   },
+   "source": {
+    "url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf",
+    "page": 2,
+    "quote": "Stepping motor with lead screws achieves quiet, smooth Movie Servo AF."
+   }
+  },
+  {
+   "id": "q14",
+   "question": "Canon EOS 100D (Rebel SL1) and the EF-S 18-55mm f/3.5-5.6 IS STM: continuous AF during video?",
+   "expected": {
+    "continuousAf": "supported"
+   },
+   "source": {
+    "url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf",
+    "page": 2,
+    "quote": "Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)"
+   }
+  },
+  {
+   "id": "q15",
+   "question": "Can the original Canon EOS M use Movie Servo AF with the EF-S 18-55mm IS STM, using Canon's EF-EOS M adapter?",
+   "expected": {
+    "continuousAf": "supported"
+   },
+   "source": {
+    "url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf",
+    "page": 2,
+    "quote": "EOS M (when using with Mount Adapter EF-EOS M)"
+   }
+  },
+  {
+   "id": "q16",
+   "question": "On a Canon T5i in live view, how well does the EF 50mm f/1.8 II autofocus with FlexiZone or face tracking?",
+   "expected": {
+    "singleAf": "limited"
+   },
+   "source": {
+    "url": "https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf",
+    "page": 165,
+    "quote": "it may take a longer time to achieve focus or the camera may not be able to achieve correct focus."
+   }
+  },
+  {
+   "id": "q17",
+   "question": "Canon EF 50mm f/1.8 II on a Sony body with the Metabones EF-E T Smart Adapter Mark V: will autofocus be accurate?",
+   "expected": {
+    "singleAf": "limited"
+   },
+   "source": {
+    "url": "https://www.metabones.com/products/details/mb-ef-e-bt5",
+    "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)"
+   }
+  },
+  {
+   "id": "q18",
+   "question": "Will my Canon EF 40mm f/2.8 STM autofocus on a Canon EOS R1 with the Mount Adapter EF-EOS R, single-shot and continuous?",
+   "expected": {
+    "singleAf": "supported",
+    "continuousAf": "supported"
+   },
+   "source": {
+    "url": "https://www.canon-europe.com/lenses/eos-r-adapters/",
+    "quote": "The EOS R System adapters offer full compatibility with Canon EF and EF-S lenses"
+   }
+  },
+  {
+   "id": "q19",
+   "question": "Can I use a teleconverter between my Sigma 70-200mm F2.8 DG OS HSM Sports and the MC-11 on a Sony a7 IV and still autofocus?",
+   "expected": {
+    "singleAf": "notSupported"
+   },
+   "source": {
+    "url": "https://www.sigma-global.com/en/support/download/sigma_mc11_camera_en_ver3.pdf",
+    "quote": "Cannot be used with teleconverter."
+   }
+  },
+  {
+   "id": "q20",
+   "question": "Will a Nikon AF-S 50mm f/1.8G autofocus on a Canon EOS R6 through a third-party F-to-RF adapter?",
+   "expected": {
+    "singleAf": "notCovered"
+   },
+   "source": {
+    "url": null,
+    "quote": null,
+    "note": "No manufacturer source in this dataset or knowledge base covers Nikon F lenses on Canon RF bodies. The correct answer is to say so, not to guess."
+   }
+  }
+ ]
 }

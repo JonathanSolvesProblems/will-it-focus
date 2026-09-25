@@ -1,6 +1,11 @@
 import {Finder} from './Finder'
-import measured from '@/data/eval-summary.json'
+import summary from '@/data/eval-summary.json'
 
+// Numbers come from eval/score.py, which writes eval-summary.json from the scored runs.
 export default function Page() {
-  return <Finder measured={measured.kb && measured.both ? {kb: measured.kb as [number, number], both: measured.both as [number, number]} : null} />
+  const measured =
+    'kb' in summary && summary.kb && summary.both
+      ? {kb: summary.kb as [number, number], both: summary.both as [number, number], questions: summary.questions}
+      : null
+  return <Finder measured={measured} />
 }
