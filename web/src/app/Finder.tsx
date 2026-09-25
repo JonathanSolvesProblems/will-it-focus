@@ -4,6 +4,8 @@ import {useEffect, useRef, useState} from 'react'
 import type {CheckedFinding, CheckedVerdict} from '@/agent/verdict'
 import {EXAMPLE_QUESTIONS as EXAMPLES} from '@/data/exampleQuestions'
 
+// The order a photographer meets them: through the viewfinder, on the screen, then recording.
+const MODE_ORDER = ['viewfinderPhoto', 'liveViewPhoto', 'video', 'any']
 const MODE_NAME = {viewfinderPhoto: 'Viewfinder photo', liveViewPhoto: 'Live view', video: 'Video', any: 'Any mode'}
 const STATE_WORD = {supported: 'Works', limited: 'With limits', notSupported: 'Does not work', notStated: 'Not stated'}
 const TOOL_WORD: Record<string, string> = {
@@ -175,7 +177,9 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
   let order = 0
   return (
     <article className="verdict">
-      <h2 className="headline">{verdict.headline}</h2>
+      <h2 className="headline" data-long={verdict.headline.length > 110 || undefined}>
+        {verdict.headline}
+      </h2>
       {saved && (
         <p className="provenance">
           Saved answer to an example question, produced by the same agent{verdict.model ? ` on ${verdict.model}` : ''} and checked
@@ -191,7 +195,7 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
         </div>
       )}
 
-      {verdict.modes.map((m) => (
+      {[...verdict.modes].sort((a, b) => MODE_ORDER.indexOf(a.mode) - MODE_ORDER.indexOf(b.mode)).map((m) => (
         <section key={m.mode} className="mode" aria-label={MODE_NAME[m.mode]}>
           <div className="mode-head">
             <span className="mode-name">{MODE_NAME[m.mode]}</span>
@@ -293,7 +297,7 @@ function Finding({finding: f, delay}: {finding: CheckedFinding; delay: number}) 
               <>
                 {' · '}
                 <a href={href} target="_blank" rel="noreferrer">
-                  open source
+                  {page ? `view page ${page}` : 'view the page'}
                 </a>
               </>
             )}

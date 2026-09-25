@@ -322,6 +322,11 @@ body {
   max-width: 32ch;
 }
 
+.headline[data-long] {
+  font-size: clamp(var(--s1), 2.2vw, var(--s2));
+  max-width: 52ch;
+}
+
 .provenance {
   font-size: var(--s-1);
   color: var(--glass-muted);
