@@ -5,7 +5,7 @@ so the footage shows exactly what a judge opens. Clips land in broll/ as .webm, 
 ffmpeg is on the path. One shot (05-live) runs a real question through the agent, which is one
 paid model call; every other shot uses saved answers and costs nothing.
 
-Usage: python scripts/broll.py [base_url] [--skip-live]
+Usage: python scripts/broll.py [base_url] [--skip-live] [--only 04-refusal,07-phone]
 """
 
 import shutil
@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "broll"
 BASE = next((a for a in sys.argv[1:] if a.startswith("http")), "https://will-it-focus.vercel.app")
 SKIP_LIVE = "--skip-live" in sys.argv
+ONLY = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
 
 DESKTOP = {"width": 1920, "height": 1080}
 PHONE = {"width": 390, "height": 844}
@@ -147,7 +148,7 @@ def main() -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch()
         for name, action, size in SHOTS:
-            if SKIP_LIVE and name.startswith("05"):
+            if (SKIP_LIVE and name.startswith("05")) or (ONLY and not name.startswith(tuple(ONLY.split(",")))):
                 print(f"skip {name}")
                 continue
             clip = record(browser, name, action, size)

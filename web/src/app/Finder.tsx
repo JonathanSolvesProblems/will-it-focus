@@ -34,6 +34,15 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
   }, [theme])
 
   const busy = useRef(false)
+  const box = useRef<HTMLTextAreaElement>(null)
+
+  // The box grows with the question, so a long one is never clipped at phone width.
+  useEffect(() => {
+    const el = box.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }, [question])
 
   async function ask(q: string) {
     // One run at a time: a second submit (Enter included) would start another paid run.
@@ -101,6 +110,7 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
           <div className="ask-row">
             <textarea
               id="q"
+              ref={box}
               rows={2}
               value={question}
               maxLength={300}
@@ -152,7 +162,11 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
 
       <footer className="lcd">
         <span className="reading">
-          {checks
+          {checks && checks.quotes === 0
+            ? phase.kind === 'done' && phase.verdict.covered
+              ? <>This answer quotes nothing: every point in it is a labelled knowledge base summary</>
+              : <>This answer quotes nothing, because no manufacturer record covers the question</>
+            : checks
             ? <>This answer: <em>{checks.verified}</em> of {checks.quotes} quotes found word for word in a manufacturer record</>
             : measured
               ? <>Across {measured.questions} test questions: <em>{measured.both[0]}</em> of {measured.both[1]} quotes were the manufacturer&apos;s words with typed records, against {measured.kb[0]} of {measured.kb[1]} from the knowledge base alone</>
