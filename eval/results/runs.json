@@ -1,0 +1,713 @@
+{
+  "model": "gpt-5.5",
+  "ranAt": "2026-09-25T10:10:15.157Z",
+  "runs": [
+    {
+      "condition": "kb",
+      "id": "q01",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7766,
+      "ms": 14733
+    },
+    {
+      "condition": "kb",
+      "id": "q02",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7527,
+      "ms": 14015
+    },
+    {
+      "condition": "kb",
+      "id": "q03",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7631,
+      "ms": 16174
+    },
+    {
+      "condition": "kb",
+      "id": "q04",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7612,
+      "ms": 13479
+    },
+    {
+      "condition": "kb",
+      "id": "q05",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7718,
+      "ms": 14373
+    },
+    {
+      "condition": "kb",
+      "id": "q06",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7635,
+      "ms": 16798
+    },
+    {
+      "condition": "kb",
+      "id": "q07",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7743,
+      "ms": 15978
+    },
+    {
+      "condition": "kb",
+      "id": "q08",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7694,
+      "ms": 14738
+    },
+    {
+      "condition": "kb",
+      "id": "q09",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7639,
+      "ms": 14562
+    },
+    {
+      "condition": "kb",
+      "id": "q10",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7606,
+      "ms": 14145
+    },
+    {
+      "condition": "kb",
+      "id": "q11",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7766,
+      "ms": 14963
+    },
+    {
+      "condition": "kb",
+      "id": "q12",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7588,
+      "ms": 13649
+    },
+    {
+      "condition": "kb",
+      "id": "q13",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 9710,
+      "ms": 12185
+    },
+    {
+      "condition": "kb",
+      "id": "q14",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 10071,
+      "ms": 16246
+    },
+    {
+      "condition": "kb",
+      "id": "q15",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 20237,
+      "ms": 20990
+    },
+    {
+      "condition": "kb",
+      "id": "q16",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 10211,
+      "ms": 21318
+    },
+    {
+      "condition": "kb",
+      "id": "q17",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7253,
+      "ms": 14344
+    },
+    {
+      "condition": "kb",
+      "id": "q18",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7608,
+      "ms": 16033
+    },
+    {
+      "condition": "kb",
+      "id": "q19",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 7494,
+      "ms": 12683
+    },
+    {
+      "condition": "kb",
+      "id": "q20",
+      "calls": [
+        "kb_initial_context",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 8769,
+      "ms": 19729
+    },
+    {
+      "condition": "dataset",
+      "id": "q01",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 98801,
+      "ms": 37164
+    },
+    {
+      "condition": "dataset",
+      "id": "q02",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 67427,
+      "ms": 28721
+    },
+    {
+      "condition": "dataset",
+      "id": "q03",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 77240,
+      "ms": 33747
+    },
+    {
+      "condition": "dataset",
+      "id": "q04",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 52696,
+      "ms": 31781
+    },
+    {
+      "condition": "dataset",
+      "id": "q05",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 92975,
+      "ms": 37381
+    },
+    {
+      "condition": "dataset",
+      "id": "q06",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 46663,
+      "ms": 27015
+    },
+    {
+      "condition": "dataset",
+      "id": "q07",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query"
+      ],
+      "tokens": 26980,
+      "ms": 18953
+    },
+    {
+      "condition": "dataset",
+      "id": "q08",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 81951,
+      "ms": 40755
+    },
+    {
+      "condition": "dataset",
+      "id": "q09",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 65456,
+      "ms": 30843
+    },
+    {
+      "condition": "dataset",
+      "id": "q10",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 56134,
+      "ms": 28441
+    },
+    {
+      "condition": "dataset",
+      "id": "q11",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 64754,
+      "ms": 27821
+    },
+    {
+      "condition": "dataset",
+      "id": "q12",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 26601,
+      "ms": 21202
+    },
+    {
+      "condition": "dataset",
+      "id": "q13",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 85138,
+      "ms": 32015
+    },
+    {
+      "condition": "dataset",
+      "id": "q14",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 74284,
+      "ms": 31505
+    },
+    {
+      "condition": "dataset",
+      "id": "q15",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 75649,
+      "ms": 35172
+    },
+    {
+      "condition": "dataset",
+      "id": "q16",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query"
+      ],
+      "tokens": 18469,
+      "ms": 20403
+    },
+    {
+      "condition": "dataset",
+      "id": "q17",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 52456,
+      "ms": 33833
+    },
+    {
+      "condition": "dataset",
+      "id": "q18",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 32999,
+      "ms": 22467
+    },
+    {
+      "condition": "dataset",
+      "id": "q19",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 52295,
+      "ms": 27840
+    },
+    {
+      "condition": "dataset",
+      "id": "q20",
+      "calls": [
+        "dataset_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 34641,
+      "ms": 24000
+    },
+    {
+      "condition": "both",
+      "id": "q01",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read"
+      ],
+      "tokens": 131642,
+      "ms": 43357
+    },
+    {
+      "condition": "both",
+      "id": "q02",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query"
+      ],
+      "tokens": 80208,
+      "ms": 34614
+    },
+    {
+      "condition": "both",
+      "id": "q03",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_schema_explorer",
+        "dataset_groq_query"
+      ],
+      "tokens": 145694,
+      "ms": 46174
+    },
+    {
+      "condition": "both",
+      "id": "q04",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 173472,
+      "ms": 37069
+    },
+    {
+      "condition": "both",
+      "id": "q05",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_schema_explorer",
+        "dataset_groq_query",
+        "dataset_groq_query"
+      ],
+      "tokens": 130515,
+      "ms": 49722
+    },
+    {
+      "condition": "both",
+      "id": "q06",
+      "calls": [
+        "dataset_initial_context",
+        "kb_initial_context",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "dataset_groq_query",
+        "kb_knowledge_base_read",
+        "dataset_groq_query"
+      ],
+      "tokens": 178960,
+      "ms": 50262
+    },
+    {
+      "condition": "both",
+      "id": "q07",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: Rate limit reached for gpt-5.5 in organization org-SGNAcJboxt5kS6L6QSelKJlK on tokens per min (TPM): Limit 500000, Used 486868, Requested 22744. Please try again in 1.153s. Visit https://platform.openai.com/account/rate-limits to learn more.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 41288
+    },
+    {
+      "condition": "both",
+      "id": "q08",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: Rate limit reached for gpt-5.5 in organization org-SGNAcJboxt5kS6L6QSelKJlK on tokens per min (TPM): Limit 500000, Used 486673, Requested 22216. Please try again in 1.066s. Visit https://platform.openai.com/account/rate-limits to learn more.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 33686
+    },
+    {
+      "condition": "both",
+      "id": "q09",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 22679
+    },
+    {
+      "condition": "both",
+      "id": "q10",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 13910
+    },
+    {
+      "condition": "both",
+      "id": "q11",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 9600
+    },
+    {
+      "condition": "both",
+      "id": "q12",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 18050
+    },
+    {
+      "condition": "both",
+      "id": "q13",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 7598
+    },
+    {
+      "condition": "both",
+      "id": "q14",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 7386
+    },
+    {
+      "condition": "both",
+      "id": "q15",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 31901
+    },
+    {
+      "condition": "both",
+      "id": "q16",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 8982
+    },
+    {
+      "condition": "both",
+      "id": "q17",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 18099
+    },
+    {
+      "condition": "both",
+      "id": "q18",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 33081
+    },
+    {
+      "condition": "both",
+      "id": "q19",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 12166
+    },
+    {
+      "condition": "both",
+      "id": "q20",
+      "error": "AI_RetryError: Failed after 3 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "calls": [],
+      "tokens": 0,
+      "ms": 13426
+    }
+  ]
+}

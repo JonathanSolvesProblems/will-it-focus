@@ -61,7 +61,11 @@ async function pool<T, R>(items: T[], size: number, fn: (item: T) => Promise<R>)
   return out
 }
 
-const jobs = conditions.flatMap((condition) => questions.map((q: {id: string; question: string}) => ({condition, q})))
+// --ids q05,q06 re-runs just those questions (e.g. after a rate-limit error).
+const ids = process.argv.includes('--ids') ? process.argv[process.argv.indexOf('--ids') + 1].split(',') : null
+const jobs = conditions.flatMap((condition) =>
+  questions.filter((q: {id: string}) => !ids || ids.includes(q.id)).map((q: {id: string; question: string}) => ({condition, q})),
+)
 const runs = await pool(jobs, 4, async ({condition, q}) => {
   const r = await ask(condition, q)
   const dir = new URL(`eval/results/${condition}/`, ROOT)
@@ -71,7 +75,8 @@ const runs = await pool(jobs, 4, async ({condition, q}) => {
   return {condition, id: q.id, ...r, text: undefined}
 })
 
+// A partial re-run writes its own log so the full run's record is kept.
 writeFileSync(
-  new URL('eval/results/runs.json', ROOT),
+  new URL(ids ? `eval/results/runs-rerun-${ids.join('-')}.json` : 'eval/results/runs.json', ROOT),
   JSON.stringify({model: MODEL, ranAt: new Date().toISOString(), runs}, null, 2),
 )

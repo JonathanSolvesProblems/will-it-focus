@@ -1,0 +1,796 @@
+{
+  "kb": {
+    "verdictFields": [
+      37,
+      43
+    ],
+    "quotes": [
+      0,
+      0
+    ],
+    "questions": [
+      {
+        "id": "q01",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q02",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "limited"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q03",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q04",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q05",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q06",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q07",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q08",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q09",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "limited"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q10",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q11",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "limited"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q12",
+        "expected": {
+          "continuousAf": "notSupported"
+        },
+        "got": {
+          "continuousAf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q13",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q14",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q15",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q16",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {
+          "singleAf": "limited",
+          "continuousAf": "limited"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q17",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {
+          "singleAf": "notCovered",
+          "continuousAf": "notCovered"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q18",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "supported"
+        },
+        "got": {
+          "singleAf": "notCovered",
+          "continuousAf": "notCovered"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q19",
+        "expected": {
+          "singleAf": "notSupported"
+        },
+        "got": {
+          "singleAf": "notSupported",
+          "continuousAf": "notSupported"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q20",
+        "expected": {
+          "singleAf": "notCovered"
+        },
+        "got": {
+          "singleAf": "notCovered",
+          "continuousAf": "notCovered"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      }
+    ]
+  },
+  "dataset": {
+    "verdictFields": [
+      39,
+      43
+    ],
+    "quotes": [
+      34,
+      35
+    ],
+    "questions": [
+      {
+        "id": "q01",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q02",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q03",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q04",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q05",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q06",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q07",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q08",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q09",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q10",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q11",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q12",
+        "expected": {
+          "continuousAf": "notSupported"
+        },
+        "got": {
+          "continuousAf": "notSupported"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q13",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 4,
+        "verbatim": 4
+      },
+      {
+        "id": "q14",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q15",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {
+          "continuousAf": "supported"
+        },
+        "quotes": 2,
+        "verbatim": 2
+      },
+      {
+        "id": "q16",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {
+          "singleAf": "limited"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q17",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {
+          "singleAf": "limited",
+          "continuousAf": "limited"
+        },
+        "quotes": 3,
+        "verbatim": 3
+      },
+      {
+        "id": "q18",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "supported"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q19",
+        "expected": {
+          "singleAf": "notSupported"
+        },
+        "got": {
+          "singleAf": "notSupported",
+          "continuousAf": "notSupported"
+        },
+        "quotes": 3,
+        "verbatim": 2
+      },
+      {
+        "id": "q20",
+        "expected": {
+          "singleAf": "notCovered"
+        },
+        "got": {
+          "singleAf": "notCovered",
+          "continuousAf": "notCovered"
+        },
+        "quotes": 0,
+        "verbatim": 0
+      }
+    ]
+  },
+  "both": {
+    "verdictFields": [
+      10,
+      43
+    ],
+    "quotes": [
+      11,
+      11
+    ],
+    "questions": [
+      {
+        "id": "q01",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 3,
+        "verbatim": 3
+      },
+      {
+        "id": "q02",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "quotes": 1,
+        "verbatim": 1
+      },
+      {
+        "id": "q03",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "quotes": 3,
+        "verbatim": 3
+      },
+      {
+        "id": "q04",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q05",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q06",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notCovered"
+        },
+        "quotes": 4,
+        "verbatim": 4
+      },
+      {
+        "id": "q07",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q08",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q09",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q10",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "notSupported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q11",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "notSupported",
+          "dmf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q12",
+        "expected": {
+          "continuousAf": "notSupported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q13",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q14",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q15",
+        "expected": {
+          "continuousAf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q16",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q17",
+        "expected": {
+          "singleAf": "limited"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q18",
+        "expected": {
+          "singleAf": "supported",
+          "continuousAf": "supported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q19",
+        "expected": {
+          "singleAf": "notSupported"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      },
+      {
+        "id": "q20",
+        "expected": {
+          "singleAf": "notCovered"
+        },
+        "got": {},
+        "quotes": 0,
+        "verbatim": 0
+      }
+    ]
+  }
+}

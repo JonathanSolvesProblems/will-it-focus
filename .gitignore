@@ -5,3 +5,6 @@ data/kb-files/
 data/kb-text/
 data/old-ids.txt
 __pycache__/
+shots/
+eval/*.log
+eval/probe-*.ndjson

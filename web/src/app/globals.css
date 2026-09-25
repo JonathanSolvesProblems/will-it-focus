@@ -1,26 +1,566 @@
-@import "tailwindcss";
+/*
+  Will It Focus. Design code (full spec in .design/manifest.json).
+
+  Avoiding: the gear-shop compatibility grid of green ticks and red crosses, and the chat bubble.
+  Metaphor: the focusing screen seen through an SLR viewfinder. Ground glass, a split-image prism.
+
+  - Quotes enter sheared and align only when the server finds them verbatim in a manufacturer
+    record, because a split-image prism shows focus by alignment.
+  - An unverified quote stays split with chromatic fringing, because misaligned prism glass is
+    exactly where real optics throw colour. Colour appears only where something is wrong.
+  - Verdicts are AF-point squares per shooting mode, because viewfinder, live view and video
+    focus with different systems on the same body.
+*/
+
+@import 'tailwindcss';
+
+:root,
+[data-theme='dark'] {
+  --surround: #0a0a0a;
+  --surround-ink: #e6e6e0;
+  --surround-muted: #8c8c86;
+  --glass: #cfcfc8;
+  --glass-ink: #161715;
+  --glass-muted: #555651;
+  --rule: #9e9f98;
+  --accent: #3fb8da;
+  --accent-on-glass: #0b5e78;
+  --fringe-a: #00b4e6;
+  --fringe-b: #e6284b;
+  --grain-opacity: 0.1;
+}
+
+[data-theme='light'] {
+  --surround: #e4e4df;
+  --surround-ink: #121312;
+  --surround-muted: #5e5f5a;
+  --glass: #f3f3ee;
+  --glass-ink: #161715;
+  --glass-muted: #565752;
+  --rule: #b9bab3;
+  --accent: #0b6e8c;
+  --accent-on-glass: #0b5e78;
+  --fringe-a: #0096c7;
+  --fringe-b: #d11f42;
+  --grain-opacity: 0.06;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: var(--font-jost), system-ui, sans-serif;
+  --font-body: var(--font-hanken), system-ui, sans-serif;
+  --font-source: var(--font-newsreader), Georgia, serif;
+  /* 1.25 ratio */
+  --s-1: 0.8125rem;
+  --s0: 1rem;
+  --s1: 1.25rem;
+  --s2: 1.5625rem;
+  --s3: 1.9375rem;
+  --s4: 2.4375rem;
+  --s5: 3.0625rem;
+  --resolve: 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --screen-radius: 18px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background: var(--surround);
+  color: var(--surround-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------- viewfinder frame ---------- */
+
+.finder {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 24px 24px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.marking {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--s-1);
+  color: var(--surround-muted);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--s3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--surround-ink);
+}
+
+.brand p {
+  color: var(--surround-muted);
+  max-width: 46ch;
+}
+
+/* ---------- the ground glass ---------- */
+
+.screen {
+  position: relative;
+  isolation: isolate;
+  background: var(--glass);
+  color: var(--glass-ink);
+  border-radius: var(--screen-radius);
+  padding: clamp(20px, 4vw, 44px);
+  flex: 1;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 120px rgb(0 0 0 / 0.28),
+    inset 0 0 22px rgb(0 0 0 / 0.18);
+}
+
+/* fresnel rings and grain: the glass is a material, not a panel */
+.screen::before,
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.screen::before {
+  background: repeating-radial-gradient(circle at 50% 42%, transparent 0 13px, rgb(0 0 0 / 0.035) 13px 14px);
+}
+
+.screen::after {
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- ask ---------- */
+
+.ask {
+  display: grid;
+  gap: 12px;
+}
+
+.ask label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--s-1);
+  color: var(--glass-muted);
+}
+
+.ask-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.ask textarea {
+  flex: 1;
+  resize: none;
+  font: inherit;
+  font-size: var(--s1);
+  line-height: 1.35;
+  color: var(--glass-ink);
+  background: rgb(255 255 255 / 0.28);
+  border: 1.5px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-height: 3.2em;
+}
+
+.ask textarea:focus-visible,
+.ask button:focus-visible,
+.example:focus-visible,
+.source a:focus-visible {
+  outline: 2.5px solid var(--accent-on-glass);
+  outline-offset: 2px;
+}
+
+.ask-row button {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--s-1);
+  font-weight: 600;
+  min-width: 120px;
+  min-height: 48px;
+  border-radius: 10px;
+  background: var(--glass-ink);
+  color: var(--glass);
+  cursor: pointer;
+}
+
+.ask-row button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.example {
+  font-family: var(--font-body);
+  font-size: var(--s-1);
+  text-align: left;
+  color: var(--glass-ink);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 6px 10px;
+  min-height: 32px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.example:hover {
+  border-color: var(--glass-ink);
+}
+
+/* ---------- idle: the split-prism collar, showing the one behaviour ---------- */
+
+.prism {
+  margin: 36px auto 0;
+  width: min(640px, 100%);
+  border-radius: 999px;
+  border: 1.5px solid var(--rule);
+  display: grid;
+  place-items: center;
+  padding: 34px 64px;
+  text-align: center;
+  position: relative;
+  box-shadow: inset 0 0 40px rgb(0 0 0 / 0.1);
+}
+
+/* the prism's dividing line */
+.prism::before {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  border-top: 1px solid var(--rule);
+  opacity: 0.7;
+}
+
+.prism .quote {
+  font-size: var(--s1);
+}
+
+.prism .source {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* ---------- working: the finder blinks while it hunts ---------- */
+
+.working {
+  margin-top: 28px;
+  display: grid;
+  gap: 6px;
+  color: var(--glass-muted);
+  font-size: var(--s-1);
+}
+
+.working .now {
+  color: var(--glass-ink);
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.working .now::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 10px;
+  border: 1.5px solid var(--glass-ink);
+  animation: hunt 900ms steps(2, jump-none) infinite;
+}
+
+@keyframes hunt {
+  from { opacity: 1; }
+  to { opacity: 0.15; }
+}
+
+.error {
+  margin-top: 24px;
+  font-weight: 600;
+}
+
+/* ---------- verdict ---------- */
+
+.verdict {
+  margin-top: 32px;
+  display: grid;
+  gap: 28px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(var(--s2), 3.2vw, var(--s4));
+  line-height: 1.15;
+  max-width: 32ch;
+}
+
+.refusal {
+  border: 2px dashed var(--glass-ink);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: grid;
+  gap: 6px;
+  max-width: 64ch;
+}
+
+.refusal strong {
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--s-1);
+}
+
+.mode {
+  display: grid;
+  grid-template-columns: minmax(150px, 210px) 1fr;
+  gap: 8px 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.mode-head {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.mode-name {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--s-1);
+  font-weight: 600;
+}
+
+/* AF points: the viewfinder's own squares carry the verdict */
+.af {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--s-1);
+}
+
+.af-point {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border: 1.5px solid var(--glass-ink);
+  position: relative;
+}
+
+.af-point[data-state='supported'] {
+  background: var(--glass-ink);
+}
+
+.af-point[data-state='limited'] {
+  background: linear-gradient(135deg, var(--glass-ink) 0 50%, transparent 50%);
+}
+
+.af-point[data-state='notSupported']::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, transparent 46%, var(--glass-ink) 46% 54%, transparent 54%);
+}
+
+.af-point[data-state='notStated'] {
+  border-style: dashed;
+  border-color: var(--glass-muted);
+}
+
+.af b {
+  font-weight: 600;
+}
+
+.findings {
+  display: grid;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.finding {
+  display: grid;
+  gap: 8px;
+}
+
+.remedy {
+  font-size: var(--s0);
+}
+
+.remedy b {
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--s-1);
+  margin-right: 8px;
+}
+
+/* ---------- the split-image quote ---------- */
+
+.quote {
+  font-family: var(--font-source);
+  font-size: var(--s1);
+  line-height: 1.4;
+  margin: 0;
+  max-width: 62ch;
+}
+
+.split {
+  display: grid;
+}
+
+.split > span {
+  grid-area: 1 / 1;
+  transition: transform var(--resolve);
+  transition-delay: var(--delay, 0ms);
+}
+
+.split > span:first-child {
+  clip-path: inset(0 0 50% 0);
+}
+
+.split > span:last-child {
+  clip-path: inset(50% 0 0 0);
+}
+
+/* entering: halves sheared apart, as through an unfocused prism */
+.quote[data-state='pending'] .split > span:first-child {
+  transform: translateX(-0.6em);
+}
+.quote[data-state='pending'] .split > span:last-child {
+  transform: translateX(0.6em);
+}
+
+/* verified: halves align. Nothing else changes. */
+.quote[data-state='verified'] .split > span {
+  transform: none;
+}
+
+/* not found in the record: stays split and throws colour */
+.quote[data-state='unverified'] .split > span:first-child {
+  transform: translateX(-0.35em);
+  text-shadow: -1.5px 0 var(--fringe-a);
+}
+.quote[data-state='unverified'] .split > span:last-child {
+  transform: translateX(0.35em);
+  text-shadow: 1.5px 0 var(--fringe-b);
+}
+
+.source {
+  font-size: var(--s-1);
+  color: var(--glass-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.source a {
+  color: var(--accent-on-glass);
+  text-underline-offset: 3px;
+}
+
+.flag {
+  font-weight: 600;
+  color: var(--glass-ink);
+}
+
+.summary {
+  color: var(--glass-ink);
+}
+
+/* ---------- finder LCD strip ---------- */
+
+.lcd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: var(--s-1);
+  color: var(--surround-muted);
+}
+
+.lcd .reading {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  color: var(--surround-ink);
+  font-size: var(--s0);
+}
+
+.lcd .reading em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.lcd a {
+  color: var(--surround-ink);
+  text-underline-offset: 3px;
+}
+
+.lcd button {
+  color: var(--surround-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .mode {
+    grid-template-columns: 1fr;
+  }
+  .ask-row {
+    flex-direction: column;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  .split > span {
+    transition: none;
+  }
+  .quote[data-state='pending'] .split > span {
+    transform: none;
+  }
+  .working .now::before {
+    animation: none;
+  }
 }

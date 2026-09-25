@@ -1,0 +1,32 @@
+{
+  "project": "will-it-focus",
+  "platform": "web-app",
+  "family": "dimensional-tactile",
+  "convention_avoided": "gear-shop compatibility table with green ticks and red crosses, or a chat bubble answering in prose",
+  "metaphor": "the focusing screen seen through an SLR viewfinder: ground glass with a split-image prism in the centre. The image stays sheared until focus is right, then the halves line up.",
+  "design_code": [
+    "Quotes enter sheared and align only when the server finds them verbatim in a manufacturer record, because a split-image prism shows focus by alignment, and this product shows truth by alignment with the source.",
+    "An unverified quote stays split with chromatic fringing, because a misaligned prism edge is exactly where real glass throws colour; colour appears only where something is wrong.",
+    "The reading surface is lit ground glass inside a black viewfinder surround, because that is where a photographer judges focus.",
+    "The verdict is marked with AF-point squares per shooting mode, because viewfinder, live view and video focus with different systems on the same body."
+  ],
+  "anti_brief": ["green check / red cross compatibility grid", "chat bubbles", "a camera-shop product card with a lens photo"],
+  "expressive_axis": "motion: the split-image resolve on every quote",
+  "register": "precise",
+  "themes": {
+    "default": "dark",
+    "dark": {"surround": "#0A0A0A", "surround_ink": "#E6E6E0", "surround_muted": "#8C8C86", "glass": "#CFCFC8", "glass_ink": "#161715", "glass_muted": "#555651", "rule": "#9E9F98", "accent": "#3FB8DA", "accent_on_glass": "#0B5E78", "fringe_a": "#00B4E6", "fringe_b": "#E6284B"},
+    "light": {"surround": "#E4E4DF", "surround_ink": "#121312", "surround_muted": "#5E5F5A", "glass": "#F3F3EE", "glass_ink": "#161715", "glass_muted": "#565752", "rule": "#B9BAB3", "accent": "#0B6E8C", "accent_on_glass": "#0B5E78", "fringe_a": "#0096C7", "fringe_b": "#D11F42"}
+  },
+  "type": {
+    "display": "Jost (lens-barrel engraving: geometric caps, tracked)",
+    "body": "Hanken Grotesk",
+    "source_text": "Newsreader (the manufacturer's own typeset words)",
+    "figures": "tabular",
+    "scale_ratio": 1.25,
+    "sizes_px": [13, 16, 20, 25, 31, 39, 49]
+  },
+  "structure": "viewfinder: black surround, one ground-glass screen, AF-point row per shooting mode, finder LCD strip along the bottom carrying the measured number",
+  "edge_depth": {"screen_radius_px": 18, "af_point": "1.5px square outline", "depth": "glass: inner vignette + grain + faint fresnel rings; surround flat"},
+  "motion": {"signature": "split-image resolve, 420ms cubic-bezier(.2,.8,.2,1), 60ms stagger", "rest": "static", "reduced_motion": "no shear, instant"}
+}
