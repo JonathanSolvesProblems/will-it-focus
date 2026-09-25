@@ -79,6 +79,21 @@ add({_id: 'body.canon-t5i', _type: 'body', name: 'Canon EOS Rebel T5i', aliases:
     src({url: 'https://global.canon/en/news/2013/jul02e.html', publisher: 'Canon', kind: 'manufacturerSpec', publishedOn: '2013-07-02',
       quote: 'Hybrid CMOS AF and Hybrid CMOS AF II, which combine phase-difference AF and contrast AF.'}),
   ]})
+// The other bodies Canon names in the 18-55 IS STM's Movie Servo AF compatibility note.
+const stmCompatNote = (id, name, aliases, mount) =>
+  add({_id: id, _type: 'body', name, aliases, maker: 'Canon', mount: ref(mount),
+    sources: [src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 2,
+      quote: 'Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)'})]})
+stmCompatNote('body.canon-sl1', 'Canon EOS Rebel SL1', ['EOS 100D', 'SL1', '100D'], 'mount.canon-ef-s')
+stmCompatNote('body.canon-t4i', 'Canon EOS Rebel T4i', ['EOS 650D', 'T4i', '650D'], 'mount.canon-ef-s')
+stmCompatNote('body.canon-eos-m', 'Canon EOS M', ['EOS M'], 'mount.canon-ef-m')
+add({_id: 'mount.canon-ef-m', _type: 'mount', name: 'Canon EF-M', maker: 'Canon', system: 'mirrorless', electronicContacts: true,
+  acceptsLensMounts: refs(['mount.canon-ef-m']),
+  sources: [canonManual(39, 'The camera cannot be used with EF-M lenses.')]})
+add({_id: 'adapter.canon-ef-eos-m', _type: 'adapter', name: 'Canon Mount Adapter EF-EOS M', maker: 'Canon',
+  lensMount: ref('mount.canon-ef'), bodyMount: ref('mount.canon-ef-m'), electronic: true, optics: 'none',
+  sources: [src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 2, quote: 'EOS M (when using with Mount Adapter EF-EOS M)'})]})
+
 add({_id: 'body.canon-eos-r1', _type: 'body', name: 'Canon EOS R1', maker: 'Canon', mount: ref('mount.canon-rf'),
   sources: [src({url: 'https://cam.start.canon/en/C018/manual/html/UG-01_Preparations_0080.html', publisher: 'Canon', kind: 'manual',
     quote: 'All EF and EF-S lenses can be used by attaching an optional Mount Adapter EF-EOS R .'})]})
@@ -179,8 +194,10 @@ add({_id: 'adapter.canon-ef-eos-r', _type: 'adapter', name: 'Canon Mount Adapter
 
 // ---------- compatibility records (non-table)
 add({_id: 'compat.t5i-video-18-55-stm', _type: 'compatibilityRecord', scope: 'listedLenses',
-  lenses: refs(['lens.canon-efs-18-55-is-stm']), bodies: refs(['body.canon-t5i']), shootingMode: 'video',
+  lenses: refs(['lens.canon-efs-18-55-is-stm']),
+  bodies: refs(['body.canon-t5i', 'body.canon-sl1', 'body.canon-t4i', 'body.canon-eos-m']), shootingMode: 'video',
   continuousAf: 'supported', behaviour: 'smoothQuiet',
+  note: 'Quiet, smooth Movie Servo AF. On the EOS M only with the Mount Adapter EF-EOS M.',
   source: src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 2,
     quote: 'Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)'})})
 add({_id: 'compat.mc11-video', _type: 'compatibilityRecord', scope: 'listedLenses',
@@ -207,6 +224,10 @@ add({_id: 'compat.ef-eos-r-all', _type: 'compatibilityRecord', scope: 'allLenses
   note: 'Canon\'s wording is "full compatibility"; it covers EF-S lenses too, with an automatic crop on full-frame bodies.',
   source: src({url: 'https://www.canon-europe.com/lenses/eos-r-adapters/', publisher: 'Canon', kind: 'manufacturerSpec',
     quote: 'The EOS R System adapters offer full compatibility with Canon EF and EF-S lenses'})})
+
+add({_id: 'caveat.mc11-teleconverter', _type: 'focusCaveat', title: 'The MC-11 cannot be used with a teleconverter',
+  shootingMode: 'any', appliesWhen: 'A teleconverter between the lens and the MC-11', effect: 'noAf',
+  source: src({url: SIGMA_CAMERA, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: 'Cannot be used with teleconverter.'})})
 
 // ---------- focus caveats (T5i manual)
 add({_id: 'caveat.t5i-basic-zone-closest', _type: 'focusCaveat', title: 'Auto modes focus the closest subject',
