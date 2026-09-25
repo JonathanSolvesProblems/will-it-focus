@@ -406,6 +406,11 @@ body {
   font-weight: 600;
 }
 
+.af .unbacked {
+  color: var(--glass-muted);
+  font-style: italic;
+}
+
 .findings {
   display: grid;
   gap: 18px;
@@ -551,6 +556,11 @@ body {
 }
 
 @media (max-width: 720px) {
+  .prism {
+    border-radius: 28px;
+    padding: 22px 20px;
+    margin-top: 24px;
+  }
   .mode {
     grid-template-columns: 1fr;
   }

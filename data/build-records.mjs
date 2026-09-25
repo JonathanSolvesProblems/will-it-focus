@@ -164,15 +164,20 @@ const sigmaId = (line, name) => `lens.sigma-${line}-${name}`.toLowerCase().repla
 for (const [line, name, afs, afc, dmf] of SIGMA_ROWS) {
   const id = sigmaId(line, name)
   const focal = name.match(/^(\d+)(?:-(\d+))?mm F([\d.]+)/)
+  // The quote is the table row itself, in the PDF's own order: lens, AFS, AFC/AFA, DMF.
+  const mark = (v) => (v ? '○' : '×')
+  const row = `${name} ${mark(afs)} ${mark(afc)} ${mark(dmf)}`
+  const rowSource = () => src({url: SIGMA_LENS, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1,
+    title: 'MC-11 lens compatibility table, row: Lens | AFS | AFC/AFA | DMF (○ supported, × not supported)', quote: row})
   add({_id: id, _type: 'lens', name: `Sigma ${name} | ${line}`, maker: 'Sigma', focusMotor: name.includes('HSM') ? 'hsm' : 'unknown',
     focalMinMm: Number(focal[1]), focalMaxMm: Number(focal[2] ?? focal[1]), maxApertureWide: Number(focal[3]),
-    sources: [src({url: SIGMA_LENS, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: name})]})
+    sources: [rowSource()]})
   add({_id: `compat.mc11.${id.slice(5)}`, _type: 'compatibilityRecord', scope: 'listedLenses', lenses: refs([id]),
     adapters: refs(['adapter.sigma-mc11-ef-e', 'adapter.sigma-mc11-sa-e']), shootingMode: 'any',
     singleAf: afs ? 'supported' : 'notSupported', continuousAf: afc ? 'supported' : 'notSupported',
     dmf: dmf ? 'supported' : 'notSupported',
-    note: `Sigma MC-11 lens table row: AFS ${afs ? '○' : '×'}, AFC/AFA ${afc ? '○' : '×'}, DMF ${dmf ? '○' : '×'}.`,
-    source: src({url: SIGMA_LENS, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: name})})
+    note: `Sigma MC-11 lens table row: AFS ${mark(afs)}, AFC/AFA ${mark(afc)}, DMF ${mark(dmf)}.`,
+    source: rowSource()})
 }
 
 // ---------- adapters
@@ -196,15 +201,24 @@ add({_id: 'adapter.canon-ef-eos-r', _type: 'adapter', name: 'Canon Mount Adapter
 // ---------- compatibility records (non-table)
 add({_id: 'compat.t5i-video-18-55-stm', _type: 'compatibilityRecord', scope: 'listedLenses',
   lenses: refs(['lens.canon-efs-18-55-is-stm']),
-  bodies: refs(['body.canon-t5i', 'body.canon-sl1', 'body.canon-t4i', 'body.canon-eos-m']), shootingMode: 'video',
+  bodies: refs(['body.canon-t5i', 'body.canon-sl1', 'body.canon-t4i']), shootingMode: 'video',
   continuousAf: 'supported', behaviour: 'smoothQuiet',
-  note: 'Quiet, smooth Movie Servo AF. On the EOS M only with the Mount Adapter EF-EOS M.',
+  note: 'Quiet, smooth Movie Servo AF.',
   source: src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 2,
     quote: 'Function compatible with the following camera (as of June 2013): EOS REBEL T5i/700D, EOS REBEL SL1/100D, EOS REBEL T4i/650D, EOS M (when using with Mount Adapter EF-EOS M)'})})
-add({_id: 'compat.mc11-video', _type: 'compatibilityRecord', scope: 'listedLenses',
+// The EOS M only takes the STM lens through Canon's EF-EOS M adapter, so it gets its own record.
+add({_id: 'compat.eos-m-video-18-55-stm', _type: 'compatibilityRecord', scope: 'listedLenses',
+  lenses: refs(['lens.canon-efs-18-55-is-stm']), bodies: refs(['body.canon-eos-m']), adapters: refs(['adapter.canon-ef-eos-m']),
+  shootingMode: 'video', continuousAf: 'supported', behaviour: 'smoothQuiet',
+  source: src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 2, quote: 'EOS M (when using with Mount Adapter EF-EOS M)'})})
+// AF-C comes from Sigma's own statement that it is not supported; the video advice is a separate caveat.
+add({_id: 'compat.mc11-afc', _type: 'compatibilityRecord', scope: 'listedLenses',
   lenses: refs(SIGMA_ROWS.map(([l, n]) => sigmaId(l, n))), adapters: refs(['adapter.sigma-mc11-ef-e', 'adapter.sigma-mc11-sa-e']),
-  shootingMode: 'video', singleAf: 'unknown', continuousAf: 'notSupported',
-  note: 'Sigma tells MC-11 users to focus manually for video.',
+  shootingMode: 'any', singleAf: 'unknown', continuousAf: 'notSupported',
+  source: src({url: SIGMA_CAMERA, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: "The camera's AF-C is not supported."})})
+add({_id: 'caveat.mc11-video-mf', _type: 'focusCaveat', title: 'Sigma advises manual focus for video on the MC-11',
+  shootingMode: 'video', appliesWhen: 'Recording video through the MC-11', effect: 'other',
+  remedy: 'Focus manually when shooting movies.',
   source: src({url: SIGMA_LENS, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: 'Please use MF when shooting movies.'})})
 add({_id: 'compat.metabones-mkv-modern', _type: 'compatibilityRecord', scope: 'allLensesOnMount', lensMount: ref('mount.canon-ef'),
   adapters: refs(['adapter.metabones-ef-e-t-mkv']), bodyCondition: 'Sony bodies from 2015 on with phase-detect AF, adapter in Advanced mode',
@@ -218,6 +232,7 @@ add({_id: 'compat.metabones-mkv-legacy', _type: 'compatibilityRecord', scope: 'a
     quote: 'AF-C may have unsatisfactory performance and/or accuracy and may suffer from excessive hunting, depending on lens - use AF-S or DMF'})})
 add({_id: 'compat.metabones-mkv-50-f18-ii', _type: 'compatibilityRecord', scope: 'listedLenses', lenses: refs(['lens.canon-ef-50-f18-ii']),
   adapters: refs(['adapter.metabones-ef-e-t-mkv']), shootingMode: 'any', singleAf: 'limited',
+  note: 'Listed under this heading on the EF-to-E Mark V page. The heading names Micro Four Thirds bodies as examples, so Metabones appears to share the list across adapters.',
   source: src({url: METABONES, publisher: 'Metabones', kind: 'manufacturerCompatTable',
     quote: 'AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)'})})
 add({_id: 'compat.ef-eos-r-all', _type: 'compatibilityRecord', scope: 'allLensesOnMount', lensMount: ref('mount.canon-ef'),

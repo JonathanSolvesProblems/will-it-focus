@@ -9,7 +9,15 @@ Return the verdict as structured output. For every finding that rests on a datas
 export type Step = {tool: string; detail: string | null}
 
 // One agent run: Sanity Context tools in, a checked verdict out. Shared by the route and the scripts.
-export async function answer(question: string, onStep: (s: Step) => void = () => {}): Promise<CheckedVerdict & {model: string}> {
+// Per-run ceiling on tokens read. A normal question uses 25-60k; a question crafted to make the
+// agent run huge queries hits this instead of the bill.
+const TOKEN_BUDGET = 150_000
+
+export async function answer(
+  question: string,
+  onStep: (s: Step) => void = () => {},
+  abortSignal?: AbortSignal,
+): Promise<CheckedVerdict & {model: string}> {
   const ctx = await connectContext()
   try {
     const result = await generateText({
@@ -18,8 +26,12 @@ export async function answer(question: string, onStep: (s: Step) => void = () =>
       prompt: question,
       tools: ctx.tools,
       output: Output.object({schema: verdictSchema}),
-      // Cost ceilings: a bounded number of tool rounds and bounded output per step.
-      stopWhen: isStepCount(10),
+      abortSignal,
+      // Cost ceilings: bounded tool rounds, bounded output per step, bounded total input.
+      stopWhen: [
+        isStepCount(10),
+        ({steps}) => steps.reduce((sum, s) => sum + (s.usage.inputTokens ?? 0), 0) > TOKEN_BUDGET,
+      ],
       maxOutputTokens: 4000,
       onStepEnd: (step) => {
         for (const call of step.toolCalls) {

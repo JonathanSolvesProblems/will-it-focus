@@ -36,7 +36,7 @@
      "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "14mm F1.8 DG HSM | ○ | × | ○"}},
     {"id": "q12", "question": "I want to film with a Sigma 50mm F1.4 DG HSM Art on a Sony a6400 through the MC-11. Will it keep focus continuously while recording video?",
      "expected": {"continuousAf": "notSupported"},
-     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "Please use MF when shooting movies."}},
+     "source": {"url": "https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf", "quote": "The camera's AF-C is not supported."}},
     {"id": "q13", "question": "Canon EOS Rebel T5i with the EF-S 18-55mm IS STM kit lens: does continuous autofocus work while recording video?",
      "expected": {"continuousAf": "supported"},
      "source": {"url": "http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf", "page": 2, "quote": "Stepping motor with lead screws achieves quiet, smooth Movie Servo AF."}},

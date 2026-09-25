@@ -29,16 +29,21 @@ export function perVisitor(ip: string): Refusal | null {
   return null
 }
 
-// 3. Concurrency: at most a few agent runs at once per instance.
-let inFlight = 0
+// 3. Concurrency: at most a few agent runs at once per instance. Slots carry a start time and
+//    expire, so a run killed by the platform before its finally block cannot hold one forever.
 const MAX_IN_FLIGHT = 3
-export function acquireSlot(): Refusal | null {
-  if (inFlight >= MAX_IN_FLIGHT) return {status: 503, message: 'Busy right now. Try an example question, or ask again in a minute.'}
-  inFlight++
-  return null
+const SLOT_TTL_MS = 130_000
+const slots = new Map<symbol, number>()
+export function acquireSlot(): {slot: symbol} | Refusal {
+  const now = Date.now()
+  for (const [s, t] of slots) if (now - t > SLOT_TTL_MS) slots.delete(s)
+  if (slots.size >= MAX_IN_FLIGHT) return {status: 503, message: 'Busy right now. Try an example question, or ask again in a minute.'}
+  const slot = Symbol('run')
+  slots.set(slot, now)
+  return {slot}
 }
-export const releaseSlot = () => {
-  inFlight = Math.max(0, inFlight - 1)
+export const releaseSlot = (slot: symbol) => {
+  slots.delete(slot)
 }
 
 // 4. A hard daily ceiling shared by every instance, counted atomically in Sanity.

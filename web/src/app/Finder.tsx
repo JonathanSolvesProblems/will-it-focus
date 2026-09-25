@@ -31,10 +31,15 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
     document.documentElement.dataset.theme = theme
   }, [theme])
 
+  const busy = useRef(false)
+
   async function ask(q: string) {
-    if (q.trim().length < 4) return
+    // One run at a time: a second submit (Enter included) would start another paid run.
+    if (q.trim().length < 4 || busy.current) return
+    busy.current = true
     setQuestion(q)
     setPhase({kind: 'working', steps: ['Starting']})
+    let answered = false
     try {
       const res = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({question: q})})
       if (!res.ok || !res.body) {
@@ -57,14 +62,19 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
           } else if (event.type === 'checking') {
             setPhase((p) => (p.kind === 'working' ? {kind: 'working', steps: [...p.steps, 'Checking every quote against its record']} : p))
           } else if (event.type === 'verdict') {
+            answered = true
             setPhase({kind: 'done', verdict: event.verdict, saved: !!event.saved})
           } else if (event.type === 'error') {
+            answered = true
             setPhase({kind: 'error', message: event.message})
           }
         }
       }
-    } catch (error) {
-      setPhase({kind: 'error', message: String(error)})
+      if (!answered) setPhase({kind: 'error', message: 'The answer was cut off before it finished. Try again, or try an example question.'})
+    } catch {
+      setPhase({kind: 'error', message: 'Could not reach the server. Check your connection and try again.'})
+    } finally {
+      busy.current = false
     }
   }
 
@@ -91,7 +101,7 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
               id="q"
               rows={2}
               value={question}
-              maxLength={500}
+              maxLength={300}
               placeholder="Canon T5i with the 18-55 STM, video"
               onChange={(e) => setQuestion(e.target.value)}
               onKeyDown={(e) => {
@@ -185,8 +195,8 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
         <section key={m.mode} className="mode" aria-label={MODE_NAME[m.mode]}>
           <div className="mode-head">
             <span className="mode-name">{MODE_NAME[m.mode]}</span>
-            <Af label="Single-shot AF" state={m.singleAf} />
-            <Af label="Continuous AF" state={m.continuousAf} />
+            <Af label="Single-shot AF" state={m.singleAf} backed={m.backed.singleAf} />
+            <Af label="Continuous AF" state={m.continuousAf} backed={m.backed.continuousAf} />
           </div>
           <ul className="findings">
             {m.findings.map((f, i) => (
@@ -194,7 +204,7 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
             ))}
             {m.remedy && (
               <li className="remedy">
-                <b>Do this</b>
+                <b>Suggestion</b>
                 {m.remedy}
               </li>
             )}
@@ -228,12 +238,13 @@ function Resolved({text, delay}: {text: string; delay: number}) {
   )
 }
 
-function Af({label, state}: {label: string; state: keyof typeof STATE_WORD}) {
+function Af({label, state, backed}: {label: string; state: keyof typeof STATE_WORD; backed: boolean | null}) {
   return (
     <div className="af">
       <span className="af-point" data-state={state} aria-hidden />
       <span>
         {label}: <b>{STATE_WORD[state]}</b>
+        {backed === false && <span className="unbacked"> · no cited record says this</span>}
       </span>
     </div>
   )
