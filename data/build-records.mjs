@@ -170,6 +170,7 @@ for (const [line, name, afs, afc, dmf] of SIGMA_ROWS) {
   add({_id: `compat.mc11.${id.slice(5)}`, _type: 'compatibilityRecord', scope: 'listedLenses', lenses: refs([id]),
     adapters: refs(['adapter.sigma-mc11-ef-e', 'adapter.sigma-mc11-sa-e']), shootingMode: 'any',
     singleAf: afs ? 'supported' : 'notSupported', continuousAf: afc ? 'supported' : 'notSupported',
+    dmf: dmf ? 'supported' : 'notSupported',
     note: `Sigma MC-11 lens table row: AFS ${afs ? '○' : '×'}, AFC/AFA ${afc ? '○' : '×'}, DMF ${dmf ? '○' : '×'}.`,
     source: src({url: SIGMA_LENS, publisher: 'Sigma', kind: 'manufacturerCompatTable', page: 1, quote: name})})
 }

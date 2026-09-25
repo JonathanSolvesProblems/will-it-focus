@@ -66,7 +66,7 @@ const ids = process.argv.includes('--ids') ? process.argv[process.argv.indexOf('
 const jobs = conditions.flatMap((condition) =>
   questions.filter((q: {id: string}) => !ids || ids.includes(q.id)).map((q: {id: string; question: string}) => ({condition, q})),
 )
-const runs = await pool(jobs, 4, async ({condition, q}) => {
+const runs = await pool(jobs, 2, async ({condition, q}) => {
   const r = await ask(condition, q)
   const dir = new URL(`eval/results/${condition}/`, ROOT)
   mkdirSync(dir, {recursive: true})

@@ -29,11 +29,12 @@ def verdict_of(text: str) -> dict:
 
 
 def main() -> int:
+    results = ROOT / (sys.argv[1] if len(sys.argv) > 1 else "eval/results")
     questions = json.loads((ROOT / "eval" / "questions.json").read_text(encoding="utf-8"))["questions"]
     haystack = corpus()
     report = {}
     for condition in ("kb", "dataset", "both"):
-        folder = ROOT / "eval" / "results" / condition
+        folder = results / condition
         if not folder.exists():
             continue
         fields_right = fields_total = quotes_ok = quotes_total = 0
@@ -57,8 +58,11 @@ def main() -> int:
             "quotes": [quotes_ok, quotes_total],
             "questions": per_question,
         }
+        misses = [f"{p['id']}:{f}={p['got'].get(f)}(want {v})" for p in per_question for f, v in p["expected"].items() if p["got"].get(f) != v]
         print(f"{condition:8} verdicts {fields_right:>2}/{fields_total}   verbatim quotes {quotes_ok:>3}/{quotes_total}")
-    (ROOT / "eval" / "results" / "score.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+        for m in misses:
+            print(f"           miss {m}")
+    (results / "score.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     return 0
 
 

@@ -63,6 +63,13 @@ export const compatibilityRecord = defineType({
     defineField({name: 'singleAf', title: 'Single-shot AF', type: 'string', options: afSupport}),
     defineField({name: 'continuousAf', title: 'Continuous AF', type: 'string', options: afSupport}),
     defineField({
+      name: 'dmf',
+      title: 'Direct manual focus (DMF)',
+      type: 'string',
+      options: afSupport,
+      description: 'Manual touch-up after AF locks. Only when the source has a DMF column or says so.',
+    }),
+    defineField({
       name: 'behaviour',
       type: 'string',
       description: 'How it focuses, when the source says: smooth and quiet, audible, hunts.',
