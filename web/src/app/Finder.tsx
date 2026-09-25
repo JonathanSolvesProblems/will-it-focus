@@ -207,12 +207,16 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
 
 // A real record quote, shown resolving on the first screen so the one behaviour is visible before asking.
 function Specimen() {
+  return <Resolved text="In Basic Zone modes, the camera will normally focus the closest subject automatically." delay={700} />
+}
+
+// Text taken straight from a record: it enters sheared and lines up.
+function Resolved({text, delay}: {text: string; delay: number}) {
   const [state, setState] = useState<'pending' | 'verified'>('pending')
   useEffect(() => {
-    const t = setTimeout(() => setState('verified'), 700)
+    const t = setTimeout(() => setState('verified'), delay)
     return () => clearTimeout(t)
-  }, [])
-  const text = 'In Basic Zone modes, the camera will normally focus the closest subject automatically.'
+  }, [delay])
   return (
     <blockquote className="quote" data-state={state}>
       <span className="sr-only">{text}</span>
@@ -258,8 +262,18 @@ function Finding({finding: f, delay}: {finding: CheckedFinding; delay: number}) 
           </span>
         </blockquote>
       )}
+      {f.recordQuote && (
+        <>
+          <span className="flag">
+            The agent reworded this. It is not in the record word for word, so here is what the record actually says:
+          </span>
+          <Resolved text={f.recordQuote} delay={delay + 300} />
+        </>
+      )}
       <div className="source">
-        {f.quote && !f.verified && <span className="flag">Not found word for word in the cited record. Treat as unverified.</span>}
+        {f.quote && !f.verified && !f.recordQuote && (
+          <span className="flag">Not found word for word in the cited record. Treat as unverified.</span>
+        )}
         {f.source && (
           <span>
             {f.source.publisher}

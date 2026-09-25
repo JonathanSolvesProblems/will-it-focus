@@ -26,7 +26,16 @@ After your answer, end with a fenced json block holding your verdict for exactly
 const only = process.argv.includes('--only') ? (process.argv[process.argv.indexOf('--only') + 1] as Condition) : null
 const conditions = (Object.keys(CONDITIONS) as Condition[]).filter((c) => !only || c === only)
 
+// A rate-limit error is a scheduling problem, not an answer: wait and try again.
 async function ask(condition: Condition, q: {id: string; question: string}) {
+  for (let attempt = 0; ; attempt++) {
+    const r = await askOnce(condition, q)
+    if (!r.error?.includes('Rate limit') || attempt === 3) return r
+    await new Promise((resolve) => setTimeout(resolve, 30_000))
+  }
+}
+
+async function askOnce(condition: Condition, q: {id: string; question: string}) {
   const ctx = await connectContext(CONDITIONS[condition])
   const started = Date.now()
   try {

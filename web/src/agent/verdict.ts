@@ -32,6 +32,9 @@ export type Verdict = z.infer<typeof verdictSchema>
 
 export type CheckedFinding = Verdict['modes'][number]['findings'][number] & {
   verified: boolean
+  // When the model's quote fails the check but the cited record has its own quote,
+  // the record's words are shown in its place, so the user still gets the manufacturer's sentence.
+  recordQuote: string | null
   source: {publisher: string | null; url: string | null; page: number | null; title: string | null} | null
 }
 export type CheckedVerdict = Omit<Verdict, 'modes'> & {
@@ -77,6 +80,7 @@ export async function checkVerdict(v: Verdict): Promise<CheckedVerdict> {
       return {
         ...f,
         verified: !!match,
+        recordQuote: f.quote && !match ? (rows?.find((r) => r.quote)?.quote ?? null) : null,
         source: row ? {publisher: row.publisher ?? null, url: row.url ?? null, page: row.page ?? null, title: row.title ?? null} : null,
       }
     }),

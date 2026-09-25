@@ -259,6 +259,28 @@ add({_id: 'caveat.18-55-stm-power-off', _type: 'focusCaveat', title: 'The STM le
   // this is the one sentence that carries its condition, so it cannot be read as absolute.
   source: src({url: STM_SHEET, publisher: 'Canon', kind: 'manual', page: 7, quote: 'Manual focus adjustments are not possible when the camera is OFF.'})})
 
+// Aliases are how people type gear names: with and without the brand, spaced and compact.
+// An agent that misses an exact alias starts guessing ids, so lookups need to be forgiving.
+for (const d of docs) {
+  if (d._type !== 'body' && d._type !== 'lens') continue
+  const base = [d.name.replace(/\s*\|\s*/, ' '), ...(d.aliases ?? [])]
+  if (d._type === 'lens' && d.maker === 'Sigma') {
+    const [spec, line] = d.name.replace(/^Sigma /, '').split(' | ')
+    const short = spec.replace(/ (DG|DC)( OS)?( MACRO)?( OS)? HSM$/, '').replace(/ DG MACRO$/, '')
+    base.push(`Sigma ${spec} ${line}`, `Sigma ${short} ${line}`, `${short} ${line}`, spec)
+  }
+  const out = new Set()
+  for (const a of base) {
+    const plain = a.replace(/α/g, 'a')
+    for (const v of [a, plain, `${d.maker} ${plain}`]) {
+      out.add(v.replace(/\s+/g, ' ').trim())
+      out.add(v.replace(/\s+/g, ''))
+    }
+  }
+  out.delete(d.name)
+  d.aliases = [...out].filter((a) => !a.replace(/\s/g, '').startsWith(`${d.maker}${d.maker}`))
+}
+
 // Sanity treats an id containing "." as a private path, hidden from public reads,
 // so ids are written with dashes. The dotted form above is only for readability here.
 const publicIds = (key, value) => ((key === '_id' || key === '_ref') ? value.replace(/\./g, '-') : value)
