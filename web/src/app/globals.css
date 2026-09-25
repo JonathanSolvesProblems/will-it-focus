@@ -322,6 +322,12 @@ body {
   max-width: 32ch;
 }
 
+.provenance {
+  font-size: var(--s-1);
+  color: var(--glass-muted);
+  margin-top: -16px;
+}
+
 .refusal {
   border: 2px dashed var(--glass-ink);
   border-radius: 10px;

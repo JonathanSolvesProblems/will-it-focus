@@ -2,13 +2,7 @@
 
 import {useEffect, useRef, useState} from 'react'
 import type {CheckedFinding, CheckedVerdict} from '@/agent/verdict'
-
-const EXAMPLES = [
-  'Why does my Canon T5i with the EF-S 18-55 IS STM hunt for focus?',
-  'Sigma 35mm F1.4 Art on a Sony a7 IV through the MC-11: AF-C and DMF?',
-  'Canon EF 50mm f/1.8 II on a Sony body with the Metabones Mark V',
-  'Nikon AF-S 50mm f/1.8G on a Canon EOS R6 with an F-to-RF adapter',
-]
+import {EXAMPLE_QUESTIONS as EXAMPLES} from '@/data/exampleQuestions'
 
 const MODE_NAME = {viewfinderPhoto: 'Viewfinder photo', liveViewPhoto: 'Live view', video: 'Video', any: 'Any mode'}
 const STATE_WORD = {supported: 'Works', limited: 'With limits', notSupported: 'Does not work', notStated: 'Not stated'}
@@ -21,7 +15,12 @@ const TOOL_WORD: Record<string, string> = {
   kb_knowledge_base_read: 'Reading knowledge base entries',
 }
 
-type Phase = {kind: 'idle'} | {kind: 'working'; steps: string[]} | {kind: 'done'; verdict: CheckedVerdict} | {kind: 'error'; message: string}
+type Answered = CheckedVerdict & {model?: string}
+type Phase =
+  | {kind: 'idle'}
+  | {kind: 'working'; steps: string[]}
+  | {kind: 'done'; verdict: Answered; saved: boolean}
+  | {kind: 'error'; message: string}
 
 export function Finder({measured}: {measured: {kb: [number, number]; both: [number, number]} | null}) {
   const [question, setQuestion] = useState('')
@@ -58,7 +57,7 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
           } else if (event.type === 'checking') {
             setPhase((p) => (p.kind === 'working' ? {kind: 'working', steps: [...p.steps, 'Checking every quote against its record']} : p))
           } else if (event.type === 'verdict') {
-            setPhase({kind: 'done', verdict: event.verdict})
+            setPhase({kind: 'done', verdict: event.verdict, saved: !!event.saved})
           } else if (event.type === 'error') {
             setPhase({kind: 'error', message: event.message})
           }
@@ -136,7 +135,7 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
         )}
 
         {phase.kind === 'error' && <p className="error">{phase.message}</p>}
-        {phase.kind === 'done' && <VerdictView verdict={phase.verdict} />}
+        {phase.kind === 'done' && <VerdictView verdict={phase.verdict} saved={phase.saved} />}
       </section>
 
       <footer className="lcd">
@@ -162,11 +161,17 @@ export function Finder({measured}: {measured: {kb: [number, number]; both: [numb
   )
 }
 
-function VerdictView({verdict}: {verdict: CheckedVerdict}) {
+function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
   let order = 0
   return (
     <article className="verdict">
       <h2 className="headline">{verdict.headline}</h2>
+      {saved && (
+        <p className="provenance">
+          Saved answer to an example question, produced by the same agent{verdict.model ? ` on ${verdict.model}` : ''} and checked
+          the same way. Type your own question for a live run.
+        </p>
+      )}
 
       {!verdict.covered && (
         <div className="refusal" role="note">

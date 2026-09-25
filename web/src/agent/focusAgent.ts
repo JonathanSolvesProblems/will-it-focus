@@ -1,7 +1,8 @@
 import {createMCPClient} from '@ai-sdk/mcp'
 import {openai} from '@ai-sdk/openai'
 
-export const MODEL = 'gpt-5.5'
+// The cheapest model that holds verdict accuracy on eval/questions.json; override with AGENT_MODEL.
+export const MODEL = process.env.AGENT_MODEL ?? 'gpt-5.4-mini'
 
 // A Context endpoint serves either a dataset (GROQ tools) or knowledge bases, not both,
 // so the agent connects to two: verdicts from the dataset, explanations from the KB.
