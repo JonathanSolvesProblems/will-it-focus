@@ -1,3 +1,4 @@
+import {NoObjectGeneratedError, NoOutputGeneratedError} from 'ai'
 import {answer} from '@/agent/answer'
 import {acquireSlot, clientIp, dailyBudget, onTopic, perVisitor, releaseSlot} from '@/agent/guard'
 import {checkVerdict, type Verdict} from '@/agent/verdict'
@@ -7,23 +8,38 @@ export const maxDuration = 120
 
 type Saved = {question: string; verdict: Verdict & {model?: string}; steps: {tool: string; detail: string | null}[]}
 const normalise = (q: string) => q.toLowerCase().replace(/\s+/g, ' ').trim()
-const saved = new Map((examples.answers as Saved[]).map((a) => [normalise(a.question), a]))
+const saved = new Map((examples.answers as unknown as Saved[]).map((a) => [normalise(a.question), a]))
 
 // Internal errors are logged, never sent: they can carry configuration or upstream detail.
 const PUBLIC_ERROR = 'Something went wrong reaching the sources. Try again in a minute, or try an example question.'
+const OVER_BUDGET = 'This question needed more searching than one run allows. Narrow it to one body, one lens and one adapter, and try again.'
 
-function ndjson(run: (send: (event: object) => void) => Promise<void>) {
+function publicMessage(error: unknown): string {
+  if (NoOutputGeneratedError.isInstance(error) || NoObjectGeneratedError.isInstance(error)) return OVER_BUDGET
+  return PUBLIC_ERROR
+}
+
+function ndjson(run: (send: (event: object) => void) => Promise<void>, signal?: AbortSignal) {
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
     async start(controller) {
-      const send = (event: object) => controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'))
+      // A visitor who left cannot receive anything; enqueueing then throws, which is not an error.
+      const send = (event: object) => {
+        try {
+          controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'))
+        } catch {}
+      }
       try {
         await run(send)
       } catch (error) {
-        console.error('ask failed', error)
-        send({type: 'error', message: PUBLIC_ERROR})
+        if (!signal?.aborted) {
+          console.error('ask failed', error)
+          send({type: 'error', message: publicMessage(error)})
+        }
       } finally {
-        controller.close()
+        try {
+          controller.close()
+        } catch {}
       }
     },
   })
@@ -32,7 +48,8 @@ function ndjson(run: (send: (event: object) => void) => Promise<void>) {
 
 const refuse = (r: {status: number; message: string}) => Response.json({error: r.message}, {status: r.status})
 
-// Order matters: free checks first, the paid call last.
+// Order matters: free checks first, the paid call last, and a visitor is only charged a turn
+// once there is a slot to run in.
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => ({}))) as {question?: unknown}
   const question = typeof body.question === 'string' ? body.question.trim() : ''
@@ -52,15 +69,15 @@ export async function POST(req: Request) {
   if (process.env.LIVE_ANSWERS === 'off') {
     return refuse({status: 503, message: 'Live answers are switched off. The example questions still work.'})
   }
-  const blocked = onTopic(question) ?? perVisitor(clientIp(req))
-  if (blocked) return refuse(blocked)
+  const offTopic = onTopic(question)
+  if (offTopic) return refuse(offTopic)
   const acquired = acquireSlot()
   if (!('slot' in acquired)) return refuse(acquired)
 
-  const overBudget = await dailyBudget()
-  if (overBudget) {
+  const blocked = perVisitor(clientIp(req)) ?? (await dailyBudget())
+  if (blocked) {
     releaseSlot(acquired.slot)
-    return refuse(overBudget)
+    return refuse(blocked)
   }
 
   // Stop paying when the visitor leaves, and before the platform's own timeout.
@@ -73,5 +90,5 @@ export async function POST(req: Request) {
     } finally {
       releaseSlot(acquired.slot)
     }
-  })
+  }, signal)
 }

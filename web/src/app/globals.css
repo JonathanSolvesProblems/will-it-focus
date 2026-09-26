@@ -371,6 +371,12 @@ body {
   font-weight: 600;
 }
 
+.mode-condition {
+  font-size: var(--s-1);
+  color: var(--glass-muted);
+  margin-top: -6px;
+}
+
 /* AF points: the viewfinder's own squares carry the verdict */
 .af {
   display: flex;

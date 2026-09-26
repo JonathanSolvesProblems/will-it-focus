@@ -3,8 +3,10 @@
 export type Refusal = {status: number; message: string}
 
 // 1. The question has to be about camera focus at all. Deterministic, costs nothing.
+//    Two distinct hits: a brand, a part, a focus word, a focal length, or a model number
+//    the way people type them (a7iv, a6400, 700d, t5i, gh5, z6, x-t5, 18-135, 1.8).
 const TERMS =
-  /\b(canon|nikon|sony|sigma|tamron|tokina|fuji(film)?|panasonic|lumix|olympus|om[- ]system|leica|pentax|metabones|viltrox|samyang|rokinon|rebel|eos|alpha|ef-?s?|ef-?m|rf|mc-?11|lens(es)?|\d+(\.\d+)?\s?mm|f\/\d|af[- ]?[sc]?|autofocus|focus(ing)?|mount|adapter|stm|usm|hsm|dslr|mirrorless|camera|body|kit)\b/gi
+  /\b(canon|nikon|sony|sigma|tamron|tokina|fuji(?:film)?|panasonic|lumix|olympus|om[- ]system|leica|pentax|metabones|viltrox|samyang|rokinon|rebel|eos|alpha|ef-?s?|ef-?m|rf|ftz|mc-?11|speed ?booster|lens(?:es)?|\d+(?:\.\d+)?\s?mm|\d{2,3}-\d{2,3}|f\/?\d(?:\.\d)?|\d\.\d|af[- ]?[sc]?|eye af|autofocus|focus(?:ing)?|hunt(?:ing|s)?|servo|video|movie|mount|adapter|stm|usm|hsm|dslr|mirrorless|camera|body|kit|[a-z]{1,3}-?\d{1,4}(?:[a-z]{1,3})?|\d{2,4}[a-z]{1,2})\b/gi
 
 export function onTopic(question: string): Refusal | null {
   const hits = new Set((question.match(TERMS) ?? []).map((t) => t.toLowerCase()))
@@ -25,7 +27,9 @@ export function perVisitor(ip: string): Refusal | null {
     return {status: 429, message: 'That is four live answers in ten minutes. The example questions still answer instantly.'}
   }
   seen.set(ip, [...recent, now])
-  if (seen.size > 5000) seen.clear()
+  if (seen.size > 5000) {
+    for (const [k, times] of seen) if (times.every((t) => now - t >= WINDOW_MS)) seen.delete(k)
+  }
   return null
 }
 

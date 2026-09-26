@@ -209,10 +209,11 @@ function VerdictView({verdict, saved}: {verdict: Answered; saved: boolean}) {
         </div>
       )}
 
-      {[...verdict.modes].sort((a, b) => MODE_ORDER.indexOf(a.mode) - MODE_ORDER.indexOf(b.mode)).map((m) => (
-        <section key={m.mode} className="mode" aria-label={MODE_NAME[m.mode]}>
+      {[...verdict.modes].sort((a, b) => MODE_ORDER.indexOf(a.mode) - MODE_ORDER.indexOf(b.mode)).map((m, i) => (
+        <section key={`${m.mode}-${i}`} className="mode" aria-label={MODE_NAME[m.mode]}>
           <div className="mode-head">
             <span className="mode-name">{MODE_NAME[m.mode]}</span>
+            {m.condition && <span className="mode-condition">{m.condition}</span>}
             <Af label="Single-shot AF" state={m.singleAf} backed={m.backed.singleAf} />
             <Af label="Continuous AF" state={m.continuousAf} backed={m.backed.continuousAf} />
           </div>

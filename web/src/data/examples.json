@@ -302,25 +302,80 @@
         },
         {
           "tool": "dataset_groq_query",
-          "detail": "{\n  \"bodiesSony\": *[_type == \"body\" && (name match text::query(\"Sony\") || maker match \"Sony\")]{_id, name, aliases, \"mount\": mount->name}[0...50],\n  \"lenses\": *[_type == \"lens\" && (name match text::query(\"Canon EF 50mm f/1.8 II\") || aliases[] match text::query(\"Canon EF 50mm f/1.8 II\") || name match text::query(\"50mm 1.8 II\") || aliases[] match text::query(\"50mm 1.8 II\"))]{_id, name, aliases, focusMotor, \"mountId\": mount._ref, \"mount\": mount->name},\n  \"adapters\": *[_type == \"adapter\" && (name match text::query(\"Metabones Mark V\") || aliases[] match text::query(\"Metabones Mark V\") || name match text::query(\"Metabones\") || aliases[] match text::query(\"Metabones\"))]{_id, name, maker, \"lensMountId\": lensMount._ref, \"lensMount\": lensMount->name, \"bodyMount\": bodyMount->name}\n}"
+          "detail": "{\n  \"lenses\": *[_type == \"lens\" && (name match text::query(\"Canon EF 50mm f/1.8 II\") || aliases[] match text::query(\"Canon EF 50mm f/1.8 II\") || name match text::query(\"50mm f/1.8 II\") || aliases[] match text::query(\"50mm f/1.8 II\"))][0...10]{_id,name,aliases,focusMotor,\"mountId\": mount._ref, \"mountName\": mount->name},\n  \"adapters\": *[_type == \"adapter\" && (name match text::query(\"Metabones Mark V\") || aliases[] match text::query(\"Metabones Mark V\") || name match text::query(\"Metabones\") || name match text::query(\"Mark V\"))][0...10]{_id,name,maker,\"lensMountId\": lensMount._ref,\"bodyMountId\": bodyMount._ref,\"bodyMountName\": bodyMount->name},\n  \"bodies\": *[_type == \"body\" && (name match text::query(\"Sony\") || maker == \"Sony\" || aliases[] match text::query(\"Sony\"))][0...40]{_id,name,aliases,maker,\"mountId\": mount._ref,\"mountName\": mount->name,releaseYear,liveViewAf,viewfinderAf,videoContinuousAf}\n}"
         },
         {
           "tool": "dataset_groq_query",
-          "detail": "{\n  \"compat\": *[_type == \"compatibilityRecord\"\n    && (\"lens-canon-ef-50-f18-ii\" in lenses[]._ref || lensMount._ref == \"mount-canon-ef\" || focusMotor == \"microMotor\")\n    && \"adapter-metabones-ef-e-t-mkv\" in adapters[]._ref\n  ]{_id, scope, shootingMode, singleAf, continuousAf, dmf, behaviour, bodyCondition, note, source, \"bodies\": bodies[]->{_id,name}, \"lenses\": lenses[]->{_id,name}, \"lensMount\": lensMount->name, focusMotor, \"adapters\": adapters[]->{_id,name}},\n  \"caveats\": *[_type == \"focusCaveat\"\n    && ((!defined(lenses) || count(lenses)==0 || \"lens-canon-ef-50-f18-ii\" in lenses[]._ref)\n        || title match text::query(\"Metabones Canon EF 50 1.8\") || appliesWhen match text::query(\"Metabones Canon EF 50 1.8\"))\n  ]{_id, title, shootingMode, appliesWhen, effect, remedy, source, \"bodies\": bodies[]->{_id,name}, \"lenses\": lenses[]->{_id,name}}\n}"
+          "detail": "{\n  \"compat\": *[_type == \"compatibilityRecord\"\n    && (!defined(bodies) || count(bodies) == 0 || count((bodies[]._ref)[@ in [\"body-sony-a1\",\"body-sony-a1ii\",\"body-sony-a5000\",\"body-sony-a5100\",\"body-sony-a6000\",\"body-sony-a6100\",\"body-sony-a6300\",\"body-sony-a6400\",\"body-sony-a6500\",\"body-sony-a6600\",\"body-sony-a6700\",\"body-sony-a7\",\"body-sony-a7c\",\"body-sony-a7cii\",\"body-sony-a7cr\",\"body-sony-a7ii\",\"body-sony-a7iii\",\"body-sony-a7iv\",\"body-sony-a7r\",\"body-sony-a7rii\",\"body-sony-a7riii\",\"body-sony-a7riv\",\"body-sony-a7rv\",\"body-sony-a7s\",\"body-sony-a7sii\",\"body-sony-a7siii\",\"body-sony-a9\",\"body-sony-a9ii\",\"body-sony-zv-e1\",\"body-sony-zv-e10\"]]) > 0)\n    && (\"lens-canon-ef-50-f18-ii\" in lenses[]._ref || lensMount._ref == \"mount-canon-ef\" || focusMotor == \"microMotor\")\n    && \"adapter-metabones-ef-e-t-mkv\" in adapters[]._ref\n  ]{_id, scope, shootingMode, singleAf, continuousAf, dmf, behaviour, bodyCondition, note, source, \"lenses\": lenses[]->{_id,name}, \"bodies\": bodies[]->{_id,name}, \"adapters\": adapters[]->{_id,name}},\n  \"caveats\": *[_type == \"focusCaveat\"\n    && (!defined(bodies) || count(bodies) == 0 || count((bodies[]._ref)[@ in [\"body-sony-a1\",\"body-sony-a1ii\",\"body-sony-a5000\",\"body-sony-a5100\",\"body-sony-a6000\",\"body-sony-a6100\",\"body-sony-a6300\",\"body-sony-a6400\",\"body-sony-a6500\",\"body-sony-a6600\",\"body-sony-a6700\",\"body-sony-a7\",\"body-sony-a7c\",\"body-sony-a7cii\",\"body-sony-a7cr\",\"body-sony-a7ii\",\"body-sony-a7iii\",\"body-sony-a7iv\",\"body-sony-a7r\",\"body-sony-a7rii\",\"body-sony-a7riii\",\"body-sony-a7riv\",\"body-sony-a7rv\",\"body-sony-a7s\",\"body-sony-a7sii\",\"body-sony-a7siii\",\"body-sony-a9\",\"body-sony-a9ii\",\"body-sony-zv-e1\",\"body-sony-zv-e10\"]]) > 0)\n    && (!defined(lenses) || count(lenses) == 0 || \"lens-canon-ef-50-f18-ii\" in lenses[]._ref)\n    && (@ match text::query(\"Metabones Mark V Canon EF Sony E\") || title match text::query(\"Metabones\") || appliesWhen match text::query(\"Metabones\"))\n  ]{_id,title,shootingMode,appliesWhen,effect,remedy,source,\"lenses\": lenses[]->{_id,name}, \"bodies\": bodies[]->{_id,name}}\n}"
+        },
+        {
+          "tool": "kb_knowledge_base_read",
+          "detail": "lens_autofocus"
         }
       ],
       "verdict": {
-        "headline": "Covered, but the exact Sony body matters: with the Metabones Mark V this EF 50mm f/1.8 II is only listed as limited for AF accuracy, AF-C is limited on older/no-PDAF Sony bodies, and continuous video AF is only stated for supported 2015+ PDAF bodies in Advanced mode.",
+        "headline": "Covered, but it is not a clean yes: Metabones lists the EF 50mm f/1.8 II as potentially inaccurate, and continuous AF depends on the Sony body generation and adapter mode.",
         "covered": true,
         "notCoveredReason": null,
         "modes": [
           {
             "mode": "any",
+            "condition": "Canon EF 50mm f/1.8 II on Metabones EF-to-Sony E Mark V; best case requires a PDAF-capable camera",
             "singleAf": "limited",
             "continuousAf": "notStated",
             "findings": [
               {
-                "point": "Metabones lists the Canon EF 50mm f/1.8 II for the EF-to-E Mark V, but only says autofocus may be usable and may not be accurate on a PDAF camera. Source: Metabones compatibility page.",
+                "point": "Metabones specifically lists this lens, but warns that autofocus may not be accurate even if it may be usable on a phase-detect AF camera.",
+                "recordId": "compat-metabones-mkv-50-f18-ii",
+                "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/products/details/mb-ef-e-bt5",
+                  "page": null,
+                  "title": null
+                }
+              },
+              {
+                "point": "The lens is a micro-motor EF lens; the knowledge base summarizes that conventional micro-motor AF is mechanical, unlike STM designs that are optimized for smoother movie servo behavior.",
+                "recordId": null,
+                "quote": null,
+                "kbEntry": "lens_autofocus",
+                "verified": false,
+                "recordQuote": null,
+                "source": null
+              }
+            ],
+            "remedy": "Use a Sony body with phase-detect AF if possible, and do not treat AF accuracy as guaranteed; check critical focus and be ready to use manual focus.",
+            "backed": {
+              "singleAf": true,
+              "continuousAf": null
+            }
+          },
+          {
+            "mode": "any",
+            "condition": "Sony bodies from 2014 or earlier, or without phase-detect AF, such as A7S II",
+            "singleAf": "limited",
+            "continuousAf": "limited",
+            "findings": [
+              {
+                "point": "For older Sony bodies or bodies without phase-detect AF, Metabones says AF-S is the safer mode and AF-C may hunt or be inaccurate.",
+                "recordId": "compat-metabones-mkv-legacy",
+                "quote": "AF-C may have unsatisfactory performance and/or accuracy and may suffer from excessive hunting, depending on lens - use AF-S or DMF",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/article/of/green-power-save-mode",
+                  "page": null,
+                  "title": null
+                }
+              },
+              {
+                "point": "The EF 50mm f/1.8 II has an additional lens-specific warning that AF may not be accurate.",
                 "recordId": "compat-metabones-mkv-50-f18-ii",
                 "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)",
                 "kbEntry": null,
@@ -334,33 +389,7 @@
                 }
               }
             ],
-            "remedy": "Use a Sony body with phase-detect AF if you want the best chance of AF working, and check focus critically because the manufacturer does not promise accurate AF for this lens.",
-            "backed": {
-              "singleAf": true,
-              "continuousAf": null
-            }
-          },
-          {
-            "mode": "any",
-            "singleAf": "supported",
-            "continuousAf": "limited",
-            "findings": [
-              {
-                "point": "For Sony bodies from 2014 or earlier, or bodies without phase-detect AF such as the A7S II, Metabones says AF-S works, but AF-C can hunt or be inaccurate. Source: Metabones green/power-save-mode page.",
-                "recordId": "compat-metabones-mkv-legacy",
-                "quote": "AF-C may have unsatisfactory performance and/or accuracy and may suffer from excessive hunting, depending on lens - use AF-S or DMF",
-                "kbEntry": null,
-                "verified": true,
-                "recordQuote": null,
-                "source": {
-                  "publisher": "Metabones",
-                  "url": "https://www.metabones.com/article/of/green-power-save-mode",
-                  "page": null,
-                  "title": null
-                }
-              }
-            ],
-            "remedy": "If your Sony body is older or lacks PDAF, prefer AF-S or DMF rather than AF-C.",
+            "remedy": "Use AF-S or DMF rather than AF-C on these bodies; switch to manual focus if hunting or missed focus continues.",
             "backed": {
               "singleAf": true,
               "continuousAf": true
@@ -368,11 +397,12 @@
           },
           {
             "mode": "video",
+            "condition": "Sony bodies from 2015 on with phase-detect AF, adapter in Advanced mode",
             "singleAf": "notStated",
             "continuousAf": "supported",
             "findings": [
               {
-                "point": "For Sony bodies from 2015 onward with phase-detect AF, and with the adapter in Advanced mode, Metabones states continuous video AF support. Source: Metabones green/power-save-mode page.",
+                "point": "Metabones states that continuous video AF is supported on phase-detect AF supported cameras when using the adapter’s Advanced mode condition recorded here.",
                 "recordId": "compat-metabones-mkv-modern",
                 "quote": "Continuous video AF with phase-detection AF on supported cameras",
                 "kbEntry": null,
@@ -384,9 +414,23 @@
                   "page": null,
                   "title": null
                 }
+              },
+              {
+                "point": "The lens-specific listing still warns that autofocus accuracy is not guaranteed.",
+                "recordId": "compat-metabones-mkv-50-f18-ii",
+                "quote": "AF may not be accurate, but may be usable on a camera with PDAF (GH7, OM-1. etc.)",
+                "kbEntry": null,
+                "verified": true,
+                "recordQuote": null,
+                "source": {
+                  "publisher": "Metabones",
+                  "url": "https://www.metabones.com/products/details/mb-ef-e-bt5",
+                  "page": null,
+                  "title": null
+                }
               }
             ],
-            "remedy": "For video AF, use a supported 2015-or-newer Sony PDAF body and put the Metabones adapter in Advanced mode; otherwise the dataset does not state that continuous video AF works.",
+            "remedy": "For video continuous AF, use a 2015-or-newer Sony body with phase-detect AF and put the Metabones Mark V in Advanced mode; test before relying on it for critical takes.",
             "backed": {
               "singleAf": null,
               "continuousAf": true
@@ -394,12 +438,13 @@
           }
         ],
         "checks": {
-          "quotes": 3,
-          "verified": 3
+          "quotes": 5,
+          "verified": 5
         },
         "model": "gpt-5.5"
       },
-      "generatedAt": "2026-09-25T11:09:41.321Z"
+      "model": "gpt-5.5",
+      "generatedAt": "2026-09-26T08:26:01.699Z"
     },
     {
       "question": "Nikon AF-S 50mm f/1.8G on a Canon EOS R6 with an F-to-RF adapter",

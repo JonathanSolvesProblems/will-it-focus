@@ -11,6 +11,10 @@ export const verdictSchema = z.object({
   modes: z.array(
     z.object({
       mode: z.enum(['viewfinderPhoto', 'liveViewPhoto', 'video', 'any']),
+      condition: z
+        .string()
+        .nullable()
+        .describe("When the cited records limit this mode to certain bodies or conditions, say so in a few words, e.g. 'Sony bodies from 2015 on with phase-detect AF'. null otherwise. Use it instead of repeating a mode."),
       singleAf: support,
       continuousAf: support,
       findings: z.array(
@@ -51,14 +55,17 @@ const squash = (s: string) =>
   s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[\s•●​*"]+/g, '').replace(/[.:;,]+$/, '')
 
 // The spans a quote may legitimately be: the whole source quote, or any run of its whole sentences.
-// A fragment, or a sentence with its condition cut off, does not count.
+// A fragment, or a sentence with its condition cut off, does not count. Periods inside
+// abbreviations ("Approx. 22.3 mm", "No. 4") are not sentence ends.
+const ABBREVIATION = /\b(approx|no|e\.g|i\.e|etc|vs|fig|cf)\./gi
 function spans(quote: string): string[] {
-  const sentences = quote.split(/(?<=[.!?:])\s+/).filter(Boolean)
-  const out = [quote]
+  const guarded = quote.replace(ABBREVIATION, (m) => m.replace(/\./g, '\u0000'))
+  const sentences = guarded.split(/(?<=[.!?:])\s+/).filter(Boolean)
+  const out = [guarded]
   for (let i = 0; i < sentences.length; i++) {
     for (let j = i + 1; j <= sentences.length; j++) out.push(sentences.slice(i, j).join(' '))
   }
-  return out.map(squash)
+  return out.map((s) => squash(s.replace(/\u0000/g, '.')))
 }
 
 function matches(modelQuote: string, sourceQuote: string) {
@@ -97,21 +104,25 @@ export async function checkVerdict(v: Verdict): Promise<CheckedVerdict> {
 
   const modes = v.modes.map((m) => {
     const cited = m.findings.map((f) => (f.recordId ? records.get(f.recordId) : undefined)).filter((r): r is RecordRow => !!r)
-    const inMode = cited.filter((r) => r._type === 'compatibilityRecord' && (r.shootingMode === m.mode || r.shootingMode === 'any' || m.mode === 'any'))
+    // A claim about one mode is backed by a record for that mode or for any mode.
+    // A claim about every mode needs a record scoped to every mode.
+    const inMode = cited.filter((r) => r._type === 'compatibilityRecord' && (r.shootingMode === m.mode || r.shootingMode === 'any'))
     const backs = (field: 'singleAf' | 'continuousAf') =>
       m[field] === 'notStated' ? null : inMode.some((r) => r[field] === STATE_FIELD[m[field] as keyof typeof STATE_FIELD])
 
     const findings = m.findings.map((f): CheckedFinding => {
+      const quote = f.quote?.trim() ? f.quote : null // an empty quote is no quote
       const rows = (f.recordId ? records.get(f.recordId)?.sources : null) ?? []
-      const match = f.quote ? rows.find((r) => r.quote && matches(f.quote!, r.quote)) : undefined
-      if (f.quote) {
+      const match = quote ? rows.find((r) => r.quote && matches(quote, r.quote)) : undefined
+      if (quote) {
         quotes++
         if (match) verified++
       }
-      const fallback = f.quote && !match ? closest(f.quote, rows) : undefined
+      const fallback = quote && !match ? closest(quote, rows) : undefined
       const row = match ?? fallback ?? rows[0]
       return {
         ...f,
+        quote,
         verified: !!match,
         recordQuote: fallback?.quote ?? null,
         source: row ? {publisher: row.publisher ?? null, url: row.url ?? null, page: row.page ?? null, title: row.title ?? null} : null,
