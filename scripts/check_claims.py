@@ -72,6 +72,22 @@ expect("README table row: Both", f"| Both (what the app runs) | {of(v['both'])} 
 for phrase in counts.values():
     expect(f"README count '{phrase}'", phrase in readme)
 
+# Gallery captions: every number in a caption must be a number the data carries, and no
+# caption may exceed the form's 140-character limit.
+captions_path = ROOT / "preview" / "captions.md"
+if captions_path.exists():
+    import subprocess
+    quotes_line = subprocess.run([sys.executable, str(ROOT / "scripts" / "check_quotes.py")], capture_output=True, text=True, encoding="utf-8").stdout.strip().splitlines()[-1]
+    quotes_checked = int(re.match(r"(\d+) quotes checked", quotes_line).group(1))
+    allowed = {*c.values(), *summary["kb"], *summary["both"], *sum(summary["verdicts"].values(), []), summary["questions"], quotes_checked, pages if manual.exists() else 388, 100, 0, 1}
+    blocks = re.findall(r"```\n(.*?)\n```", captions_path.read_text(encoding="utf-8"), re.S)
+    expect("captions.md has 1 to 8 captions", 1 <= len(blocks) <= 8)
+    for i, cap in enumerate(blocks, 1):
+        numbers = {int(n) for n in re.findall(r"\b\d+\b", cap)}
+        expect(f"caption {i} numbers {sorted(numbers)} are all in the data", numbers <= allowed)
+        expect(f"caption {i} is {len(cap)} characters, 140 max", len(cap) <= 140)
+        expect(f"caption {i} has no em or en dash", "—" not in cap and "–" not in cap)
+
 # Writing rule: no em or en dashes.
 for name, text in (("post", post), ("README", readme)):
     expect(f"no em or en dashes in {name}", "—" not in text and "–" not in text)
