@@ -80,6 +80,24 @@ Rebuild the dataset: `python scripts/fetch_sources.py`, `node data/build-records
 
 Project `qnl9jh8n`, dataset `production` (public). Studio: https://will-it-focus.sanity.studio
 
+## Sources
+
+The documents behind the dataset and the Knowledge Base, and where each number in the writeup and the demo comes from.
+
+- Canon, EOS REBEL T5i / EOS 700D Instruction Manual (388 pages; page 100 for the Basic Zone focusing note): https://gdlp01.c-wss.com/gds/5/0300010905/07/eos-rebelt5i-700d-im7-en.pdf
+- Canon, EF-S18-55mm f/3.5-5.6 IS STM Instructions: http://gdlp01.c-wss.com/gds/8/0300011908/02/efs18-55f35-56isstm-im2-eng.pdf
+- Canon, EF-S18-55mm f/3.5-5.6 IS II Instructions: https://gdlp01.c-wss.com/gds/7/0300004937/02/efs18-55f35-56-is-ii-im2-eng.pdf
+- Canon Canada, EOS Rebel T5i announcement, 21 March 2013: https://www.canon.ca/dam/about/News/Press-Releases/2013/2013-MAR-21-EOSREBELT5I-EN.pdf
+- Sigma, MC-11 lens compatibility table: https://www.sigma-global.com/en/support/download/SIGMA_MC_11_lens_en.pdf
+- Sigma, MC-11 camera compatibility table (as of June 2025): https://www.sigma-global.com/en/support/download/sigma_mc11_camera_en_ver3.pdf
+- Metabones, Canon EF to Sony E T Smart Adapter Mark V: https://www.metabones.com/products/details/mb-ef-e-bt5 and https://www.metabones.com/article/of/green-power-save-mode
+- Canon Europe, EOS R adapters: https://www.canon-europe.com/lenses/eos-r-adapters/
+- Every other web quote, with the page text it was checked against: [data/sources-raw.md](data/sources-raw.md)
+- Document counts: the public dataset, `count(*)` over project `qnl9jh8n`
+- Knowledge Base entry count: [data/probe/initial_context.json](data/probe/initial_context.json)
+- Eval numbers: [eval/results/score.json](eval/results/score.json), produced by `python eval/score.py` from [eval/questions.json](eval/questions.json)
+- The 17-second live run: [eval/probe-live-vercel.ndjson](eval/probe-live-vercel.ndjson), timed against the deployed site on 25 September 2026
+
 ## License
 
 MIT

@@ -50,7 +50,7 @@ def shot_home(page: Page) -> None:
     page.locator(".example").first.hover()
     page.wait_for_timeout(1200)
     page.locator(".example").nth(1).hover()
-    page.wait_for_timeout(2400)
+    page.wait_for_timeout(6500)
 
 
 def shot_t5i(page: Page) -> None:
@@ -58,21 +58,30 @@ def shot_t5i(page: Page) -> None:
     example(page, 0)
     page.wait_for_timeout(1500)
     scroll_through(page, steps=5)
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(4500)
+
+
+def shot_t5i_summaries(page: Page) -> None:
+    # Holds on the knowledge base points, each labelled as a summary and not the manufacturer's words.
+    open_page(page)
+    example(page, 0)
+    page.wait_for_timeout(800)
+    scroll_through(page, steps=2, step_px=520, pause_ms=1400)
+    page.wait_for_timeout(15000)
 
 
 def shot_sigma(page: Page) -> None:
     open_page(page)
     example(page, 1)
-    page.wait_for_timeout(2500)
-    scroll_through(page, steps=2)
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(4000)
+    scroll_through(page, steps=2, pause_ms=2600)
+    page.wait_for_timeout(11000)
 
 
 def shot_refusal(page: Page) -> None:
     open_page(page)
     example(page, 3)
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(14000)
 
 
 def shot_live(page: Page) -> None:
@@ -110,6 +119,7 @@ def shot_phone(page: Page) -> None:
 SHOTS = [
     ("01-home", shot_home, DESKTOP),
     ("02-saved-t5i", shot_t5i, DESKTOP),
+    ("02b-t5i-summaries", shot_t5i_summaries, DESKTOP),
     ("03-saved-sigma", shot_sigma, DESKTOP),
     ("04-refusal", shot_refusal, DESKTOP),
     ("05-live-question", shot_live, DESKTOP),
