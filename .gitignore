@@ -9,3 +9,5 @@ shots/
 eval/*.log
 eval/probe-*.ndjson
 broll/
+demo.mp4
+*.edit-plan.json

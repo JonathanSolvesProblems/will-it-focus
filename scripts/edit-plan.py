@@ -3,7 +3,7 @@
 Fixes the words Whisper mangled (names and homophones, timings kept), then cuts the
 timeline at spoken words so every clip lands on the sentence it illustrates. Lower thirds
 come from broll/_sources.json. Render with:
-  vidkit assemble broll/narration.wav --clips-dir broll --edit-plan demo.edit-plan.json --out demo.mp4
+  vidkit assemble broll/narration.wav --clips-dir broll --edit-plan broll/demo.edit-plan.json --out broll/demo.mp4
 
 Usage: python scripts/edit-plan.py
 """
@@ -189,7 +189,7 @@ plan = {
     "segments": segs,
     "_transcript": transcript,
 }
-(ROOT / "demo.edit-plan.json").write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
+(BROLL / "demo.edit-plan.json").write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
 for s in segs:
     print(f"{s['start_time']:7.2f} -> {s['end_time']:7.2f}  {s['clip_id']:22} in {s['in_point']:5.2f}  {s['lower_third']}")
 print("cut points:", b)
