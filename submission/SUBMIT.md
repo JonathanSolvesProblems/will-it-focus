@@ -40,6 +40,4 @@ Then add `Write-up on DEV: <post url>` under the code link in the YouTube descri
 ## Optional
 
 The template's last section, Agent Session, takes a coding-agent transcript uploaded at
-https://dev.to/agent_sessions/new (Claude Code is supported). It is optional. This project's
-sessions contain pasted API keys and tokens, so any upload has to be sliced to a clean excerpt
-and set to public before the post goes live.
+https://dev.to/agent_sessions/new. It is optional and this submission leaves it out.
