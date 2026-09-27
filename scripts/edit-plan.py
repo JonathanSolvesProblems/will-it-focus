@@ -137,7 +137,42 @@ cuts = [
     (b["its"], speech_end, "06-light-theme", 4.0, "none", ""),
     (speech_end, END, "s99-end", 0.0, "none", ""),
 ]
-segs = [{"clip_id": c, "start_time": s, "end_time": e, "lower_third": lt, "effect": fx, "in_point": ip} for s, e, c, ip, fx, lt in cuts]
+import subprocess
+
+
+def paint_time(clip_id: str) -> float:
+    """Seconds until a recorded app clip first shows the page (mean luma above 60).
+
+    A deployed page can take a few seconds to answer, and Playwright records from the
+    moment the context opens, so a clip can start with a dark, unpainted frame. Seeking
+    in before that point puts black in the cut.
+    """
+    path = next((BROLL / f"{clip_id}{ext}" for ext in (".mp4", ".webm") if (BROLL / f"{clip_id}{ext}").exists()), None)
+    if path is None:
+        return 0.0
+    out = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-t", "8", "-i", str(path), "-vf", "fps=20,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-", "-an", "-f", "null", "-"],
+        capture_output=True, text=True, encoding="utf-8", errors="replace",
+    ).stdout
+    t = 0.0
+    for line in out.splitlines():
+        m = re.search(r"pts_time:([\d.]+)", line)
+        if m:
+            t = float(m.group(1))
+        m = re.search(r"YAVG=([\d.]+)", line)
+        if m and float(m.group(1)) > 60:
+            return t
+    return 0.0
+
+
+segs = []
+for s, e, c, ip, fx, lt in cuts:
+    if c[0] == "0" and c[:2] != "08" and c[:2] != "09":  # recorded app clips, not cards
+        painted = paint_time(c) + 0.25
+        if painted > ip:
+            print(f"  {c}: page paints at {painted - 0.25:.2f}s, in_point {ip} -> {painted:.2f}")
+            ip = round(painted, 2)
+    segs.append({"clip_id": c, "start_time": s, "end_time": e, "lower_third": lt, "effect": fx, "in_point": ip})
 for a, z in zip(segs, segs[1:]):
     assert a["end_time"] == z["start_time"], (a, z)
 for s in segs:

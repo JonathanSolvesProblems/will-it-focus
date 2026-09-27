@@ -98,6 +98,17 @@ The documents behind the dataset and the Knowledge Base, and where each number i
 - Eval numbers: [eval/results/score.json](eval/results/score.json), produced by `python eval/score.py` from [eval/questions.json](eval/questions.json)
 - The 17-second live run: [eval/probe-live-vercel.ndjson](eval/probe-live-vercel.ndjson), timed against the deployed site on 25 September 2026
 
+### What appears in the demo video
+
+- Page 100 of Canon's EOS REBEL T5i / EOS 700D Instruction Manual, rendered from the PDF linked above, with the two sentences highlighted as they are read
+- The Sources tab of the Sanity Context Knowledge Base for this project, a screenshot of my own Sanity dashboard
+- The compatibility record `compat-mc11-sigma-art-35mm-f1-4-dg-hsm`, read from the public dataset at render time
+- The Knowledge Base outline returned by `initial_context`, from [data/probe/initial_context.json](data/probe/initial_context.json)
+- The `spans` and `matches` functions from [web/src/agent/verdict.ts](web/src/agent/verdict.ts), as committed
+- The eval table from [eval/results/score.json](eval/results/score.json) and the output of `scripts/check_quotes.py` and `scripts/check_claims.py`, run while the cards were generated
+- Screen recordings of the deployed app at https://will-it-focus.vercel.app, and the opening footage from a short film I made years ago
+- The narration is my own voice. The video was assembled with [scripts/broll.py](scripts/broll.py), [scripts/broll-cards.py](scripts/broll-cards.py) and [scripts/edit-plan.py](scripts/edit-plan.py)
+
 ## License
 
 MIT
