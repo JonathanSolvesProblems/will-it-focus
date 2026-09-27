@@ -4,6 +4,8 @@ Ask whether a camera body, lens and adapter will autofocus together, and why foc
 
 Live: **https://will-it-focus.vercel.app** (no login)
 
+Write-up: https://jonathanandrei.com/blog/will-it-focus-camera-autofocus-manufacturer-documents/
+
 Built for the [DEV Sanity Challenge](https://dev.to/challenges/sanity-2026-09-16), Path One: an agent that queries real content through Sanity Context.
 
 ## Why

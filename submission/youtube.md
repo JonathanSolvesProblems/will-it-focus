@@ -17,6 +17,7 @@ Measured on 20 questions graded by the manufacturers' own compatibility tables. 
 
 Try it: https://will-it-focus.vercel.app
 Code (MIT): https://github.com/JonathanSolvesProblems/will-it-focus
+Write-up: https://jonathanandrei.com/blog/will-it-focus-camera-autofocus-manufacturer-documents/
 
 Chapters
 0:00 My Canon T5i and page 100 of its manual
