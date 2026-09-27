@@ -8,6 +8,8 @@ Write-up: https://jonathanandrei.com/blog/will-it-focus-camera-autofocus-manufac
 
 Built for the [DEV Sanity Challenge](https://dev.to/challenges/sanity-2026-09-16), Path One: an agent that queries real content through Sanity Context.
 
+Submission post: https://dev.to/jonathansolvesstuff/will-it-focus-21-of-22-quotes-word-for-word-from-the-manufacturers-own-documents-4imm
+
 ## Why
 
 When I was working in film, my Canon T5i would sometimes have trouble focusing in auto mode, and I often just switched to manual and did it myself. Canon's manual explains it on page 100: "In Basic Zone modes, the camera will normally focus the closest subject automatically. Therefore, it may not always focus your target subject."

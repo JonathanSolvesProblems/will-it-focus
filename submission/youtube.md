@@ -18,6 +18,7 @@ Measured on 20 questions graded by the manufacturers' own compatibility tables. 
 Try it: https://will-it-focus.vercel.app
 Code (MIT): https://github.com/JonathanSolvesProblems/will-it-focus
 Write-up: https://jonathanandrei.com/blog/will-it-focus-camera-autofocus-manufacturer-documents/
+Challenge entry on DEV: https://dev.to/jonathansolvesstuff/will-it-focus-21-of-22-quotes-word-for-word-from-the-manufacturers-own-documents-4imm
 
 Chapters
 0:00 My Canon T5i and page 100 of its manual
@@ -57,6 +58,6 @@ shots/thumb/will-it-focus-h.jpg
 
 - Title is 98 characters (limit 100). Tags are 272 characters (limit 500). No emoji, no em dashes.
 - Chapters were read from broll/demo.edit-plan.json plus the 3.5 s title card and match the 3:38 render.
-- After the DEV post is published, add one line under the code link: `Write-up on DEV: <post url>`.
+- The DEV entry link is in the description; the video's description on YouTube still needs the two new lines (write-up and DEV entry) pasted in.
 - Every number in the description is one that scripts/check_claims.py verifies in the post and README.
 - Thumbnail H is the two-card version (film frame behind, app answer in front) rendered by shots/thumb/composite.py. A through G and I are the alternates in the same folder.
