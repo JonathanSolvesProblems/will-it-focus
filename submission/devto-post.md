@@ -19,6 +19,8 @@ The rule it lives by: a quote is only shown as the manufacturer's words if it is
 
 ## Demo
 
+{% youtube lqclr-K-Akc %}
+
 Live, no login: **https://will-it-focus.vercel.app**
 
 The four example questions are saved answers, so they load instantly. Type your own for a live run through Sanity Context.

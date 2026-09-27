@@ -100,6 +100,8 @@ The documents behind the dataset and the Knowledge Base, and where each number i
 
 ### What appears in the demo video
 
+The video is at https://www.youtube.com/watch?v=lqclr-K-Akc (3 minutes 38 seconds).
+
 - Page 100 of Canon's EOS REBEL T5i / EOS 700D Instruction Manual, rendered from the PDF linked above, with the two sentences highlighted as they are read
 - The Sources tab of the Sanity Context Knowledge Base for this project, a screenshot of my own Sanity dashboard
 - The compatibility record `compat-mc11-sigma-art-35mm-f1-4-dg-hsm`, read from the public dataset at render time
