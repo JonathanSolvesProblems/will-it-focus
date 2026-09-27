@@ -12,7 +12,9 @@ export const metadata: Metadata = {
     "Ask whether a camera body, lens and adapter will autofocus together, and why focus still misses. Every quote is checked against the manufacturer's own document.",
 }
 
-export default function RootLayout({children}: LayoutProps<'/'>) {
+// Typed explicitly rather than with Next's generated LayoutProps, so a fresh clone type-checks
+// before any dev or build run has generated .next/types.
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" data-theme="dark" className={`${jost.variable} ${hanken.variable} ${newsreader.variable}`}>
       <body>{children}</body>
