@@ -2,7 +2,7 @@
 title: "Will It Focus: 21 of 22 Quotes Word for Word From the Manufacturer's Own Documents"
 published: false
 tags: devchallenge, sanitychallenge, sanity, ai
-cover_image: https://raw.githubusercontent.com/JonathanSolvesProblems/will-it-focus/main/submission/images/verdict-sigma.png
+cover_image: https://raw.githubusercontent.com/JonathanSolvesProblems/will-it-focus/main/submission/images/cover.png
 ---
 
 *This is a submission for the [Sanity Challenge, Path One: Ship an Agent That Queries Real Content](https://dev.to/challenges/sanity-2026-09-16)*
