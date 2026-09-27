@@ -63,7 +63,8 @@ export async function GET() {
     }),
     contextDataset: await timed(async () => {
       const text = await contextCall('will-it-focus', 'groq_query', {query: 'count(*[_type == "compatibilityRecord"])'})
-      const n = Number(text.match(/\d+/)?.[0])
+      // The tool answers with JSON: {"meta": {...}, "result": 36}
+      const n = Number((JSON.parse(text) as {result?: unknown}).result)
       if (!(n > 0)) throw new Error(`groq through Context returned: ${text.slice(0, 80)}`)
       return `groq_query counted ${n} records`
     }),
