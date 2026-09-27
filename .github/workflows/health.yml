@@ -1,0 +1,37 @@
+name: Demo health
+
+# Polls the deployed app's health endpoint through the judging window. A failed run means a
+# dependency the demo needs is down (dataset, either Sanity Context endpoint, saved answers,
+# or the model key), and GitHub emails the workflow's author on failure. Costs nothing: the
+# endpoint never calls the model.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Health endpoint
+        run: |
+          body=$(curl -s --max-time 60 -w '\n%{http_code}' https://will-it-focus.vercel.app/api/health)
+          code=$(printf '%s' "$body" | tail -1)
+          json=$(printf '%s' "$body" | sed '$d')
+          echo "$json" | python3 -m json.tool
+          if [ "$code" != "200" ]; then
+            echo "::error::health returned HTTP $code"
+            exit 1
+          fi
+      - name: Page loads
+        run: |
+          code=$(curl -s -o /dev/null --max-time 60 -w '%{http_code}' https://will-it-focus.vercel.app)
+          [ "$code" = "200" ] || { echo "::error::page returned HTTP $code"; exit 1; }
+      - name: Saved answer serves
+        run: |
+          out=$(curl -s --max-time 60 -X POST https://will-it-focus.vercel.app/api/ask \
+            -H 'Content-Type: application/json' \
+            -d '{"question":"Nikon AF-S 50mm f/1.8G on a Canon EOS R6 with an F-to-RF adapter"}')
+          printf '%s' "$out" | grep -q '"type":"verdict"' || { echo "::error::saved answer did not return a verdict"; printf '%s\n' "$out" | head -c 600; exit 1; }
