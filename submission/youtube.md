@@ -49,7 +49,7 @@ will it focus, sanity, sanity context, sanity challenge, dev challenge, ai agent
 ## Thumbnail
 
 ```
-shots/thumb/will-it-focus-a.jpg
+shots/thumb/will-it-focus-h.jpg
 ```
 
 ## Notes (nothing above this line is commentary)
@@ -58,4 +58,4 @@ shots/thumb/will-it-focus-a.jpg
 - Chapters were read from broll/demo.edit-plan.json plus the 3.5 s title card and match the 3:38 render.
 - After the DEV post is published, add one line under the code link: `Write-up on DEV: <post url>`.
 - Every number in the description is one that scripts/check_claims.py verifies in the post and README.
-- Thumbnail B (shots/thumb/will-it-focus-b.jpg, "AI THAT QUOTES / ONLY THE MANUAL") is the alternate.
+- Thumbnail H is the two-card version (film frame behind, app answer in front) rendered by shots/thumb/composite.py. A through G and I are the alternates in the same folder.
