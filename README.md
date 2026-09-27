@@ -100,7 +100,7 @@ The documents behind the dataset and the Knowledge Base, and where each number i
 
 ### What appears in the demo video
 
-The video is at https://www.youtube.com/watch?v=lqclr-K-Akc (3 minutes 38 seconds).
+The video is at https://www.youtube.com/watch?v=NJ9Xf6ussV4 (3 minutes 38 seconds).
 
 - Page 100 of Canon's EOS REBEL T5i / EOS 700D Instruction Manual, rendered from the PDF linked above, with the two sentences highlighted as they are read
 - The Sources tab of the Sanity Context Knowledge Base for this project, a screenshot of my own Sanity dashboard
