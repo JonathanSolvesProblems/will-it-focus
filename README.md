@@ -1,5 +1,7 @@
 # Will It Focus
 
+> **Archived.** Built for the DEV Sanity Challenge, which closed on October 22, 2026. The site still serves its four saved example answers; live questions are switched off and the project is no longer maintained.
+
 Ask whether a camera body, lens and adapter will autofocus together, and why focus still misses. Every quote in the answer is checked, by code, against the manufacturer's own document.
 
 Live: **https://will-it-focus.vercel.app** (no login)
